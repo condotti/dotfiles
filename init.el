@@ -335,12 +335,13 @@ Default to a pdf, or a html if ARG is not nil."
                 deft-auto-save-interval 0))
 (use-package dired
   :bind (:map dired-mode-map ("r" . wdired-change-to-wdired-mode)))
+(use-package dired-filter
+  :ensure t)
 (use-package dired-narrow
   :ensure t
-  ;; :bind (:map dired-mode-map ("/" . dired-narrow))
+  :bind (:map dired-mode-map ("C-/" . dired-narrow))
   :commands dired-narrow
-  :init (add-hook 'dired-load-hook
-                  #'(lambda nil (define-key dired-mode-map "/" 'dired-narrow))))
+  )
 (use-package doc-view
   :ensure t
   :config
@@ -451,7 +452,8 @@ Default to a pdf, or a html if ARG is not nil."
 ;; M
 (use-package magit
   :defer t
-  :ensure t)
+  :ensure t
+  :bind ("C-x g" . magit-status))
 (use-package migemo
   ;; :ensure t
   :disabled t
@@ -584,7 +586,7 @@ Default to a pdf, or a html if ARG is not nil."
 ;; V
 (use-package vdiff
   :ensure t
-  :bind (:bind vdiff-mode-map ("C-c" . vdiff-mode-prefix-map)))
+  :bind (:map vdiff-mode-map ("C-c" . vdiff-mode-prefix-map)))
 (use-package volatile-highlights
   :ensure t
   :config
