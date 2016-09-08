@@ -354,7 +354,7 @@ Default to a pdf, or a html if ARG is not nil."
           "d:/USER/Program/PortableApps/PortableApps/LibreOfficePortable/LibreOfficePortable.exe"))
   (when (eq system-type 'gnu/linux)
     (setq dired-guess-shell-alist-user
-          '("\\.pdf\\'" "evince"))))
+          '(("\\.pdf\\'" "evince")))))
 (use-package dumb-jump
   :config
   (when (equal system-type 'windows-nt)
