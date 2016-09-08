@@ -351,7 +351,10 @@ Default to a pdf, or a html if ARG is not nil."
           doc-view-pdftotext-program
           "d:/USER/Program/PortableApps/PortableApps/xpdf-3.04/pdftotext.exe"
           doc-view-odf->pdf-converter-program
-          "d:/USER/Program/PortableApps/PortableApps/LibreOfficePortable/LibreOfficePortable.exe")))
+          "d:/USER/Program/PortableApps/PortableApps/LibreOfficePortable/LibreOfficePortable.exe"))
+  (when (eq system-type 'gnu/linux)
+    (setq dired-guess-shell-alist-user
+          '("\\.pdf\\'" "evince"))))
 (use-package dumb-jump
   :config
   (when (equal system-type 'windows-nt)
