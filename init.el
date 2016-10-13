@@ -473,6 +473,10 @@ Default to a pdf, or a html if ARG is not nil."
         migemo-coding-system 'utf-8-unix
         migemo-user-dictionary nil
         migemo-regex-dictionary nil))
+(use-package move-text
+  :ensure t
+  :config
+  (move-text-default-bindings))
 (use-package mozc
   :when (eq system-type 'gnu/linux)
   :ensure t
@@ -660,3 +664,4 @@ Default to a pdf, or a html if ARG is not nil."
 ;; ----------------------------------------------------------------------
 ;; End of init.el
 ;; ----------------------------------------------------------------------
+(put 'upcase-region 'disabled nil)
