@@ -11,6 +11,8 @@
 (add-to-list 'default-frame-alist '(width . 100))
 (add-to-list 'default-frame-alist '(alpha . (100 80)))
 (defalias 'yes-or-no-p 'y-or-n-p)
+(defalias 'message-box 'message)
+(setq use-dialog-box nil)
 ;; ----------------------------------------------------------------------
 ;; Bootstrap `use-package'
 ;; ----------------------------------------------------------------------
