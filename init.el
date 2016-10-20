@@ -462,6 +462,14 @@ Default to a pdf, or a html if ARG is not nil."
   :defer t
   :ensure t
   :bind ("C-x g" . magit-status))
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode)
+         ("\\.gfm\\'" . gfm-mode))
+  :init (setq markdown-command-needs-filename t))
 (use-package migemo
   ;; :ensure t
   :disabled t
