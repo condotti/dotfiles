@@ -530,7 +530,7 @@ Default to a pdf, or a html if ARG is not nil."
    'org-babel-load-languages '((dot . t)))
   :bind (:map org-mode-map ("C-c p" . my/org-export-to-pdf)))
 (use-package ox-twbs
-  :ennsure t)
+  :ensure t)
 ;; P
 (use-package peep-dired
   :ensure t
