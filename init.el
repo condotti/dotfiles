@@ -14,6 +14,14 @@
 (defalias 'message-box 'message)
 (setq use-dialog-box nil)
 ;; ----------------------------------------------------------------------
+;; Add keybindigs for chromebook
+;;   C-SPC         - toggles IME
+;;   C-@, C-=, C-- - set-mark
+;; Those keys will be remapped to cua-set-mark.
+;; ----------------------------------------------------------------------
+(define-key global-map (kbd "C-=") 'set-mark-command)
+(define-key global-map (kbd "C--") 'set-mark-command)
+;; ----------------------------------------------------------------------
 ;; Bootstrap `use-package'
 ;; ----------------------------------------------------------------------
 (require 'package)
