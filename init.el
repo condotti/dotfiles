@@ -580,8 +580,8 @@ Default to a pdf, or a html if ARG is not nil."
 (use-package sicp
   :ensure t)
 (use-package smex
-  :disabled t
-  :bind (("M-x" . smex))
+  :ensure t
+  ;; :bind (("M-x" . smex))
   :config (smex-initialize))
 (use-package spu
   :ensure t
@@ -598,6 +598,14 @@ Default to a pdf, or a html if ARG is not nil."
         sunshine-appid "f47775f279d8a2678be89e39dd3f9653"
         sunshine-units 'metric
         sunshine-show-icons t))
+(use-package super-save
+  :ensure t
+  :config
+  (setq super-save-auto-save-when-idle t
+        auto-save-default nil)
+  :init
+  (super-save-mode +1)
+  :diminish "💾")
 (use-package swiper
   :ensure t
   :bind (("C-s" . swiper)
