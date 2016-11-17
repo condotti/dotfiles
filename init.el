@@ -13,20 +13,8 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (defalias 'message-box 'message)
 (setq use-dialog-box nil)
-;; http://drunkenness.hatenablog.com/entry/2015/03/08/061359
-(cond ((eq system-type 'gnu/linux)
-       (set-language-environment 'Japanese)
-       (prefer-coding-system 'utf-8-unix))
-      ((eq system-type 'windows-nt)
-       (setenv "LANG" "ja_JP.UTF-8")
-       (setenv "EDITOR" "EMACS")
-       (setq default-buffer-file-coding-system 'utf-8-unix)
-       (set-coding-system-priority 'utf-8)
-       (set-terminal-coding-system 'utf-8)
-       (set-keyboard-coding-system 'utf-8)
-       (add-to-list 'process-coding-system-alist '("git" utf-8 . cp932))
-       (add-to-list 'process-coding-system-alist '("cmd.exe" cp932 . cp932))
-       (add-to-list 'process-coding-system-alist '("cmdproxy.exe" cp932 . cp932))))
+(if (eq system-type 'windows-nt)
+    (add-to-list 'process-coding-system-alist '("cmd.exe" cp932 . cp932)))
 ;; ----------------------------------------------------------------------
 ;; Add keybindigs for chromebook
 ;;   C-SPC         - toggles IME
