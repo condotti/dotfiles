@@ -35,7 +35,7 @@
      ("screen" . shell-script))))
  '(package-selected-packages
    (quote
-    (dired-filter kosmos-theme material-theme ag sicp lyrics vdiff highlight-indentation visutal-indentation-mode highlight-indent-guides multiple-cursors dumb-jump dump-jump sunshine wttrin org company-go go-eldoc powershell yalinum w3m undo-tree tiny tabbar sunrise-commander stripe-buffer shrink-whitespace popwin peep-dired mozc-popup markdown-mode+ lacarte jade-mode j-mode gnuplot-mode gnuplot fuzzy frame-cmds evil-numbers esup direx cyberpunk-theme clojure-mode-extra-font-locking auto-package-update auto-compile adoc-mode ac-mozc 2048-game)))
+    (all-the-icons-dired all-the-icons sql-indent paredit dired-icon ox-twbs dired-filter kosmos-theme material-theme ag sicp lyrics vdiff highlight-indentation visutal-indentation-mode highlight-indent-guides multiple-cursors dumb-jump dump-jump sunshine wttrin org company-go go-eldoc powershell yalinum w3m undo-tree tiny tabbar sunrise-commander stripe-buffer shrink-whitespace popwin peep-dired mozc-popup markdown-mode+ lacarte jade-mode j-mode gnuplot-mode gnuplot fuzzy frame-cmds evil-numbers esup direx cyberpunk-theme clojure-mode-extra-font-locking auto-package-update auto-compile adoc-mode ac-mozc 2048-game)))
  '(paradox-automatically-star t)
  '(paradox-github-token t)
  '(prettify-symbols-unprettify-at-point (quote right-edge))
@@ -77,8 +77,11 @@
  '(markdown-header-face-3 ((t (:inherit markdown-header-face :foreground "yellow" :height 1.0))))
  '(markdown-header-face-4 ((t (:inherit markdown-header-face :height 1.0))))
  '(org-document-title ((t (:background "#000000" :foreground "#add8e6" :weight bold :height 1.0))))
- '(org-level-1 ((t (:foreground "#ff1493" :height 1.0))))
- '(org-level-2 ((t (:foreground "#ffff00" :height 1.0))))
- '(org-level-3 ((t (:foreground "#4c83ff" :height 1.0))))
+ '(org-level-1 ((t (:inherit fixed-pitch :foreground "#ff1493" :height 1.0))))
+ '(org-level-2 ((t (:inherit fixed-pitch :foreground "#ffff00" :height 1.0))))
+ '(org-level-3 ((t (:inherit fixed-pitch :foreground "#4c83ff" :height 1.0))))
+ '(org-level-4 ((t (:inherit fixed-pitch :foreground "#E6DB74" :height 1.0))))
+ '(org-level-5 ((t (:inherit fixed-pitch :foreground "#53f2dc"))))
+ '(org-level-6 ((t (:inherit fixed-pitch :foreground "#63de5d"))))
  '(tabbar-default ((t (:inherit nil :background "white" :foreground "black" :height 1))))
  '(yalinum-face ((t (:inherit linum :foreground "gray70")))))

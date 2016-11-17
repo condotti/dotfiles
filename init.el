@@ -301,6 +301,11 @@ Default to a pdf, or a html if ARG is not nil."
 ;;   :ensure t
 ;;   :init
 ;;   (defalias 'nrepl-current-connection-buffer 'nrepl-connection-buffer-name))
+(use-package clj-refactor
+  :ensure t
+  :config
+  (add-hook 'clojure-mode-hook #'clj-refactor-mode)
+  :diminish "🔧")
 (use-package company
   :ensure t
   :bind (:map company-active-map
@@ -466,7 +471,7 @@ Default to a pdf, or a html if ARG is not nil."
                cider-repl-mode-hook))
     (add-hook h (lambda nil (lispy-mode 1))))
   :bind (:map lispy-mode-map-lispy (":" . self-insert-command))
-  :diminish "λ")
+  :diminish "🍬")
 ;; M
 (use-package magit
   :defer t
@@ -685,6 +690,7 @@ Default to a pdf, or a html if ARG is not nil."
 (add-hook 'doc-view-mode-hook #'(lambda nil (setq mode-name "📜")))
 (add-hook 'messages-buffer-mode-hook #'(lambda nil (setq mode-name "💬")))
 (add-hook 'text-mode-hook #'(lambda nil (setq mode-name "✎")))
+(add-hook 'clojure-mode-hook #'(lambda nil (setq mode-name "λ")))
 (add-to-list 'auto-mode-alist '("\\.eml\\'" . text-mode))
 ;; ----------------------------------------------------------------------
 ;; Customize interface
