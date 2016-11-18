@@ -397,7 +397,7 @@ Default to a pdf, or a html if ARG is not nil."
   :ensure t
   :defer t)
 (use-package elnode
-  :ensure t)
+  :disabled t)
 (use-package emoji-fontset
   :ensure t
   :init
@@ -587,6 +587,8 @@ Default to a pdf, or a html if ARG is not nil."
   :ensure t
   :bind (("M-\\" . shrink-whitespace)))
 (use-package sicp
+  :ensure t)
+(use-package simple-httpd
   :ensure t)
 (use-package smex
   :ensure t
