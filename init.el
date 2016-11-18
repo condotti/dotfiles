@@ -305,6 +305,8 @@ Default to a pdf, or a html if ARG is not nil."
   :ensure t
   :config
   (add-hook 'clojure-mode-hook #'clj-refactor-mode)
+  :init
+  (cljr-add-keybindings-with-prefix "C-c C-m")
   :diminish "🔧")
 (use-package company
   :ensure t
