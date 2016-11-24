@@ -574,6 +574,8 @@ Default to a pdf, or a html if ARG is not nil."
   :config
   (setq recentf-max-menu-items 100
         recentf-max-saved-items 100))
+(use-package recentf-ext
+  :ensure t)
 (use-package re-builder
   :bind (("C-c R" . re-builder))
   :config (setq reb-re-syntax 'string))
