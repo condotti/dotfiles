@@ -17,6 +17,9 @@
  '(global-hl-line-mode nil)
  '(global-hl-line-sticky-flag t)
  '(global-prettify-symbols-mode t)
+ '(glyphless-char-display-control
+   (quote
+    ((no-font . empty-box))))
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(mouse-avoidance-mode (quote proteus) nil (avoid))
@@ -35,7 +38,7 @@
      ("screen" . shell-script))))
  '(package-selected-packages
    (quote
-    (all-the-icons-dired all-the-icons sql-indent paredit dired-icon ox-twbs dired-filter kosmos-theme material-theme ag sicp lyrics vdiff highlight-indentation visutal-indentation-mode highlight-indent-guides multiple-cursors dumb-jump dump-jump sunshine wttrin org company-go go-eldoc powershell yalinum w3m undo-tree tiny tabbar sunrise-commander stripe-buffer shrink-whitespace popwin peep-dired mozc-popup markdown-mode+ lacarte jade-mode j-mode gnuplot-mode gnuplot fuzzy frame-cmds evil-numbers esup direx cyberpunk-theme clojure-mode-extra-font-locking auto-package-update auto-compile adoc-mode ac-mozc 2048-game)))
+    (recentf-ext simple-httpd all-the-icons-dired all-the-icons sql-indent paredit dired-icon ox-twbs dired-filter kosmos-theme material-theme ag sicp lyrics vdiff highlight-indentation visutal-indentation-mode highlight-indent-guides multiple-cursors dumb-jump dump-jump sunshine wttrin org company-go go-eldoc powershell yalinum w3m undo-tree tiny tabbar sunrise-commander stripe-buffer shrink-whitespace popwin peep-dired mozc-popup markdown-mode+ lacarte jade-mode j-mode gnuplot-mode gnuplot fuzzy frame-cmds evil-numbers esup direx cyberpunk-theme clojure-mode-extra-font-locking auto-package-update auto-compile adoc-mode ac-mozc 2048-game)))
  '(paradox-automatically-star t)
  '(paradox-github-token t)
  '(prettify-symbols-unprettify-at-point (quote right-edge))
