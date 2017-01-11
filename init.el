@@ -28,7 +28,8 @@
 ;; ----------------------------------------------------------------------
 (require 'package)
 (setq package-enable-at-startup nil
-      use-package-verbose t)
+      use-package-verbose t
+      use-package-always-defer t)
 ;; (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
@@ -357,7 +358,7 @@ Default to a pdf, or a html if ARG is not nil."
   (load-theme 'cyberpunk t))
 ;; D
 (use-package darkokai-theme
-  :ensure t
+  :demand t
   :config
   (setq darkokai-mode-line-padding 1)
   (load-theme 'darkokai t))
@@ -584,7 +585,8 @@ Default to a pdf, or a html if ARG is not nil."
 ;; Q
 ;; R
 (use-package racer
-  :ensure t
+  ;; :ensure t
+  :disabled t                           ; disabled temporarily
   :config
   (add-hook 'cargo-minor-mode-hook 'racer-mode)
   (add-hook 'racer-mode-hook 'company-mode))
