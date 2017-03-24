@@ -8,6 +8,7 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (add-to-list 'default-frame-alist '(font . "Ricty 12"))
+;; (add-to-list 'default-frame-alist '(font . "ゆたぽん（コーディング）Backsl"))
 (add-to-list 'default-frame-alist '(width . 100))
 (add-to-list 'default-frame-alist '(alpha . (100 80)))
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -15,6 +16,7 @@
 (setq use-dialog-box nil)
 (if (eq system-type 'windows-nt)
     (add-to-list 'process-coding-system-alist '("cmd.exe" cp932 . cp932)))
+(require 'generic-x)
 ;; ----------------------------------------------------------------------
 ;; Add keybindigs for chromebook
 ;;   C-SPC         - toggles IME
@@ -336,7 +338,8 @@ Default to a pdf, or a html if ARG is not nil."
   :init
   (setq company-idle-delay 0
         company-minimum-prefix-length 2
-        company-selection-wrap-around t)
+        company-selection-wrap-around t
+        company-dabbrev-downcase nil)
   (global-company-mode)
   :diminish "🏢")
 (use-package company-go
@@ -474,6 +477,9 @@ Default to a pdf, or a html if ARG is not nil."
 ;;   (ido-vertical-mode 1)
 ;;   (setq ido-vertical-define-keys 'C-n-C-p-up-and-down))
 ;; J
+(use-package js2-mode
+  :ensure t
+  :mode "\\.js\\'")
 ;; K
 (use-package key-chord
   :disabled t
@@ -553,18 +559,30 @@ Default to a pdf, or a html if ARG is not nil."
   (setq neo-smart-open t
         neo-create-file-auto-open t
         neo-keymap-style 'concise))
+(use-package nodejs-repl
+  :ensure t
+  :bind (:map js-mode-map
+              ("C-x C-e" . nodejs-repl-send-last-sexp)
+              ("C-c C-r" . nodejs-repl-send-region)
+              ("C-c C-l" . nodejs-repl-load-file)
+              ("C-c C-z" . nodejs-repl-swith-to-repl)))
 ;; O
+;; (use-package ob-browser
+;;   :ensure t)
 (use-package org
   :ensure t
   :mode ("\\.org\\'" . org-mode)
   :config
   (setq org-list-description-max-indent t
         org-adapt-indentation nil
-        org-ditaa-jar-path "~/.emacs.d/etc/ditaa0_9.jar")
+        org-ditaa-jar-path "~/bin/ditaa0_9.jar"
+        org-plantuml-jar-path "~/bin/plantuml.jar")
   (add-hook 'org-mode-hook #'(lambda nil (setq mode-name "📓")))
   :init
   (org-babel-do-load-languages
-   'org-babel-load-languages '((dot . t)))
+   'org-babel-load-languages '((dot . t)
+                               (plantuml . t)
+                               (ditaa . t)))
   :bind (:map org-mode-map ("C-c p" . my/org-export-to-pdf)))
 (use-package ox-twbs
   :ensure t)
@@ -644,7 +662,7 @@ Default to a pdf, or a html if ARG is not nil."
   :ensure t
   :bind (("C-s" . swiper)
          ("C-c C-r" . ivy-resume)
-         ("C-x C-r" . ivy-recentf))
+         ("C-x C-r" . counsel-recentf))
   :init
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t))
