@@ -277,6 +277,12 @@ Default to a pdf, or a html if ARG is not nil."
       (delete-file old-location))))
 (bind-key "C-c m" #'move-file)
 ;; ----------------------------------------------------------------------
+;; repl for nodejs - see https://www.emacswiki.org/emacs/NodeJs
+;;   To exit, type .exit (just for my reminder)
+;; ----------------------------------------------------------------------
+(defun node-repl () (interactive)
+       (pop-to-buffer (make-comint "node-repl" "node" nil "--interactive")))
+;; ----------------------------------------------------------------------
 ;; Packages
 ;; ----------------------------------------------------------------------
 ;; number etc.
@@ -382,8 +388,10 @@ Default to a pdf, or a html if ARG is not nil."
 (use-package dired-narrow
   :ensure t
   :bind (:map dired-mode-map ("C-/" . dired-narrow))
-  :commands dired-narrow
-  )
+  :commands dired-narrow)
+;; (use-package dired-quick-sort
+;;   :ensure t
+;;   :init (dired-quick-sort-setup))
 (use-package doc-view
   :ensure t
   :config
@@ -560,7 +568,7 @@ Default to a pdf, or a html if ARG is not nil."
         neo-create-file-auto-open t
         neo-keymap-style 'concise))
 (use-package nodejs-repl
-  :ensure t
+  :disabled t
   :bind (:map js-mode-map
               ("C-x C-e" . nodejs-repl-send-last-sexp)
               ("C-c C-r" . nodejs-repl-send-region)
