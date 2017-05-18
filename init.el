@@ -372,6 +372,10 @@ Default to a pdf, or a html if ARG is not nil."
   :config
   (setq darkokai-mode-line-padding 1)
   (load-theme 'darkokai t))
+(use-package ddskk
+  :if (not window-system)
+  :ensure t
+  :bind ("C-x C-j" . skk-mode))
 (use-package deft
   :ensure t
   :bind (("C-c d" . deft))
