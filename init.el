@@ -449,7 +449,15 @@ Default to a pdf, or a html if ARG is not nil."
 ;; H
 (use-package haskell-mode
   :ensure t
-  :mode "\\.hs\'")
+  :mode "\\.hs\'"
+  :init
+  (setq prettify-symbols-alist '(
+                                 ("lambda" . 955) ; λ
+                                 ("->" . 8594)    ; →
+                                 ("=>" . 8658)    ; ⇒
+                                 ("map" . 8614)   ; ↦
+                                 ))
+  (electric-pair-local-mode 1))
 (use-package helm
   :defer t
   :disabled t
