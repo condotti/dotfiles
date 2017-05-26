@@ -1,4 +1,4 @@
-;; -*- coding: utf-8 -*-
+;; -*- coding: utf-8; eval: (git-auto-commit-mode t) -*-
 (add-hook 'after-init-hook
           `(lambda nil (setq gc-cons-threshold ,gc-cons-threshold)))
 (setq gc-cons-threshold (* 128 1024 1024))
@@ -440,6 +440,9 @@ Default to a pdf, or a html if ARG is not nil."
   (emoji-fontset-enable "Segoe UI Symbol"))
 ;; F
 ;; G
+(use-package git-auto-commit-mode
+  :ensure t
+  :diminish "🚗")
 (use-package go-eldoc
   :ensure t)
 (use-package go-mode
