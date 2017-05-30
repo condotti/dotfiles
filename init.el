@@ -368,7 +368,8 @@ Default to a pdf, or a html if ARG is not nil."
   (load-theme 'cyberpunk t))
 ;; D
 (use-package darkokai-theme
-  :demand t
+  ;; :demand t
+  :disabled t
   :config
   (setq darkokai-mode-line-padding 1)
   (load-theme 'darkokai t))
@@ -590,6 +591,10 @@ Default to a pdf, or a html if ARG is not nil."
               ("C-c C-r" . nodejs-repl-send-region)
               ("C-c C-l" . nodejs-repl-load-file)
               ("C-c C-z" . nodejs-repl-swith-to-repl)))
+(use-package nubox
+  :ensure t
+  :config
+  (load-theme 'nubox-dark t))
 ;; O
 ;; (use-package ob-browser
 ;;   :ensure t)
