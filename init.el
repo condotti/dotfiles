@@ -367,7 +367,10 @@ Default to a pdf, or a html if ARG is not nil."
   :config
   (load-theme 'cyberpunk t))
 ;; D
-(use-package dark-mint-theme)
+(use-package dark-mint-theme
+  :ensure t
+  :config
+  (load-theme 'dark-mint t))
 (use-package darkokai-theme
   ;; :demand t
   :disabled t
