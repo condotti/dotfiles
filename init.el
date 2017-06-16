@@ -367,6 +367,7 @@ Default to a pdf, or a html if ARG is not nil."
   :config
   (load-theme 'cyberpunk t))
 ;; D
+(use-package dark-mint-theme)
 (use-package darkokai-theme
   ;; :demand t
   :disabled t
@@ -592,7 +593,8 @@ Default to a pdf, or a html if ARG is not nil."
               ("C-c C-l" . nodejs-repl-load-file)
               ("C-c C-z" . nodejs-repl-swith-to-repl)))
 (use-package nubox
-  :ensure t
+  ;; :ensure t
+  :disabled t
   :config
   (load-theme 'nubox-dark t))
 ;; O
