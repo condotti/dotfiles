@@ -42,6 +42,15 @@
   (package-refresh-contents)
   (package-install 'use-package))
 ;; ----------------------------------------------------------------------
+;; keep .emacs.d clean (http://manuel-uberti.github.io/programming/2017/06/17/nolittering/)
+;; ----------------------------------------------------------------------
+(use-package no-littering
+  :ensure t
+  :config
+  (require 'recentf)
+  (add-to-list 'recentf-exclude no-littering-var-directory)
+  (add-to-list 'recentf-exclude no-littering-etc-directory))
+;; ----------------------------------------------------------------------
 ;; system-specific settings (trial)
 ;; ----------------------------------------------------------------------
 (when (equal system-name "isidg58935")
@@ -505,6 +514,12 @@ Default to a pdf, or a html if ARG is not nil."
 ;;   :config
 ;;   (ido-vertical-mode 1)
 ;;   (setq ido-vertical-define-keys 'C-n-C-p-up-and-down))
+(use-package ivy-dired-history
+  :ensure t
+  :config
+  (require 'dired)
+  (add-to-list 'savehist-additional-variables 'ivy-dired-history-variable)
+  :bind (:map dired-mode-map ("," . dired)))
 ;; J
 (use-package js2-mode
   :ensure t
