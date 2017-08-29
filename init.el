@@ -1,4 +1,3 @@
-;; -*- coding: utf-8; eval: (git-auto-commit-mode t) -*-
 (add-hook 'after-init-hook
           `(lambda nil (setq gc-cons-threshold ,gc-cons-threshold)))
 (setq gc-cons-threshold (* 128 1024 1024))
@@ -293,6 +292,11 @@ Default to a pdf, or a html if ARG is not nil."
 (defun node-repl () (interactive)
        (pop-to-buffer (make-comint "node-repl" "node" nil "--interactive")))
 ;; ----------------------------------------------------------------------
+;; repl for ipython - just do the same thing
+;; ----------------------------------------------------------------------
+(defun ipython-repl () (interactive)
+       (pop-to-buffer (make-comint "ipython-repl" "ipython" nil)))
+;; ----------------------------------------------------------------------
 ;; Packages
 ;; ----------------------------------------------------------------------
 ;; number etc.
@@ -434,6 +438,9 @@ Default to a pdf, or a html if ARG is not nil."
           dumb-jump-ag-cmd "d:/USER/Program/cygwin/bin/ag.exe"))
   :ensure t)
 ;; E
+(use-package ein
+  :ensure t
+  :defer t)
 (use-package eldoc
   :defer t
   :config
