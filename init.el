@@ -692,8 +692,8 @@ Default to a pdf, or a html if ARG is not nil."
   ;; :bind (("M-x" . smex))
   :config (smex-initialize))
 (use-package spu
-  :ensure t
-  :defer 10
+  :disabled t
+  :defer 5
   :config
   (spu-package-upgrade-daily))
 (use-package sql-indent
