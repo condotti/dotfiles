@@ -683,8 +683,6 @@ Default to a pdf, or a html if ARG is not nil."
 (use-package shrink-whitespace
   :ensure t
   :bind (("M-\\" . shrink-whitespace)))
-(use-package sicp
-  :ensure t)
 (use-package simple-httpd
   :ensure t)
 (use-package smex
