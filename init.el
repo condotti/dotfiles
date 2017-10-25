@@ -381,12 +381,13 @@ Default to a pdf, or a html if ARG is not nil."
   (load-theme 'cyberpunk t))
 ;; D
 (use-package dark-mint-theme
-  :ensure t
+  ;; :ensure t
   :config
-  (load-theme 'dark-mint t))
+  (load-theme 'dark-mint t)
+  :disabled t)
 (use-package darkokai-theme
   ;; :demand t
-  :disabled t
+  :ensure t
   :config
   (setq darkokai-mode-line-padding 1)
   (load-theme 'darkokai t))
@@ -587,10 +588,11 @@ Default to a pdf, or a html if ARG is not nil."
   :bind (("<hankaku>" . toggle-input-method)
          ("<zenkaku>" . toggle-input-method))
   :init
-  (advice-add 'mozc-session-execute-command
-              :after (lambda (&rest args)
-                       (when (eq (nth 0 args) 'CreateSession)
-                         (mozc-session-sendkey '(hiragana)))))
+  ;; the following code is only for Windows
+  ;; (advice-add 'mozc-session-execute-command
+  ;;             :after (lambda (&rest args)
+  ;;                      (when (eq (nth 0 args) 'CreateSession)
+  ;;                        (mozc-session-sendkey '(hiragana)))))
   (setq default-input-method 'japanese-mozc))
 (use-package mozc-popup
   :when (eq system-type 'gnu/linux)
@@ -683,8 +685,6 @@ Default to a pdf, or a html if ARG is not nil."
 (use-package shrink-whitespace
   :ensure t
   :bind (("M-\\" . shrink-whitespace)))
-(use-package sicp
-  :ensure t)
 (use-package simple-httpd
   :ensure t)
 (use-package smex

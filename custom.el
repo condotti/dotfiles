@@ -7,9 +7,10 @@
  '(calendar-week-start-day 1)
  '(cua-enable-cua-keys nil)
  '(cua-mode t nil (cua-base))
+ '(custom-enabled-themes (quote (deeper-blue)))
  '(custom-safe-themes
    (quote
-    ("83e584d74b0faea99a414a06dae12f11cd3176fdd4eba6674422539951bcfaa8" default)))
+    ("6ee6f99dc6219b65f67e04149c79ea316ca4bcd769a9e904030d38908fd7ccf9" "83e584d74b0faea99a414a06dae12f11cd3176fdd4eba6674422539951bcfaa8" default)))
  '(dired-listing-switches "-alh")
  '(display-time-mode t)
  '(eww-search-prefix "http://www.google.com/search?q=")
@@ -17,9 +18,7 @@
  '(global-hl-line-mode nil)
  '(global-hl-line-sticky-flag t)
  '(global-prettify-symbols-mode t)
- '(glyphless-char-display-control
-   (quote
-    ((no-font . empty-box))))
+ '(glyphless-char-display-control (quote ((no-font . empty-box))))
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(mouse-avoidance-mode (quote proteus) nil (avoid))
