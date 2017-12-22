@@ -669,8 +669,12 @@ Default to a pdf, or a html if ARG is not nil."
 (use-package recentf
   :ensure t
   :config
-  (setq recentf-max-menu-items 100
-        recentf-max-saved-items 100))
+  (require 'recentf-ext)
+  (setq recentf-max-menu-items 200
+        recentf-max-saved-items 200
+        recentf-exclude '(".recentf"))
+  :init
+  (run-with-idle-timer 30 t #'(lambda nil (recentf-save-list))))
 (use-package recentf-ext
   :ensure t)
 (use-package re-builder
