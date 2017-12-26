@@ -319,6 +319,11 @@ Default to a pdf, or a html if ARG is not nil."
   :diminish "⇒")
 (use-package alchemist
   :ensure t)
+(use-package atomic-chrome
+  :ensure t
+  :init
+  (add-hook 'kill-emacs-hook 'atomic-chrome-stop-server) ; useless one
+  (atomic-chrome-start-server))
 (use-package auto-package-update
   :disabled t
   :config (setq auto-package-update-interval 14)
