@@ -444,6 +444,10 @@ Default to a pdf, or a html if ARG is not nil."
           dumb-jump-ag-cmd "d:/USER/Program/cygwin/bin/ag.exe"))
   :ensure t)
 ;; E
+(use-package edit-server
+  :ensure t
+  :config
+  (edit-server-start))
 (use-package ein
   :ensure t
   :defer t)
