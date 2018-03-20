@@ -51,14 +51,6 @@
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 ;; ----------------------------------------------------------------------
-;; system-specific settings (trial)
-;; ----------------------------------------------------------------------
-(when (equal system-name "isidg58935")
-  (setenv "PATH"
-          (concat "d:/USER/Program/cygwin/bin"
-                  path-separator
-                  (getenv "PATH"))))
-;; ----------------------------------------------------------------------
 ;; Local function definitions
 ;; ----------------------------------------------------------------------
 (defun my/sample-text-j nil
@@ -574,7 +566,15 @@ Default to a pdf, or a html if ARG is not nil."
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode)
          ("\\.gfm\\'" . gfm-mode))
-  :init (setq markdown-command-needs-filename t))
+  :init
+  (setq markdown-command-needs-filename t)
+  (when (eq system-type 'windows-nt)
+    (setq markdown-command "pandoc.exe"))
+  )
+(use-package markdown-preview-mode
+  :ensure t
+  :config
+  (setq markdown-preview-stylesheets (list "http://thomasf.github.io/solarized-css/solarized-light.min.css")))
 (use-package migemo
   ;; :ensure t
   :disabled t
@@ -812,6 +812,12 @@ Default to a pdf, or a html if ARG is not nil."
 ;; ----------------------------------------------------------------------
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
+;; ----------------------------------------------------------------------
+;; system-specific settings (trial)
+;; ----------------------------------------------------------------------
+(when (equal system-name "isidg58935")
+  (custom-set-variables '(browse-url-browser-function 'browse-url-chrome)
+                        '(browse-url-chrome-program "d:/USER/Program/PortableApps/PortableApps/GoogleChromePortable64/GoogleChromePortable.exe")))
 ;; ----------------------------------------------------------------------
 ;; End of init.el
 ;; ----------------------------------------------------------------------
