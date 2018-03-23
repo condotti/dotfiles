@@ -660,7 +660,7 @@ Default to a pdf, or a html if ARG is not nil."
   :defer t
   :bind (:map dired-mode-map ("P" . peep-dired)))
 (use-package powerline
-  :if (eq system-type 'gnu/linux)
+  ;; :if (eq system-type 'gnu/linux)
   :ensure t
   :config
   (powerline-default-theme))
