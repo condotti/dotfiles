@@ -390,7 +390,7 @@ Default to a pdf, or a html if ARG is not nil."
   (setq darkokai-mode-line-padding 1)
   (load-theme 'darkokai t))
 (use-package ddskk
-  :if (not window-system)
+  ;; :if (not window-system)
   :ensure t
   :bind ("C-x C-j" . skk-mode))
 (use-package deft
@@ -552,7 +552,10 @@ Default to a pdf, or a html if ARG is not nil."
                clojure-mode-hook
                cider-repl-mode-hook))
     (add-hook h (lambda nil (lispy-mode 1))))
-  :bind (:map lispy-mode-map-lispy (":" . self-insert-command))
+  :bind (:map lispy-mode-map-lispy
+              (":" . self-insert-command)
+              ("C-c m" . lispy-multiline)
+	      ("C-c o" . lispy-oneline))
   :diminish "🍬")
 ;; M
 (use-package magit
