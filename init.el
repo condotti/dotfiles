@@ -1,7 +1,14 @@
-(add-hook 'after-init-hook
-          `(lambda nil (setq gc-cons-threshold ,gc-cons-threshold)))
-(setq gc-cons-threshold (* 128 1024 1024))
+;; (add-hook 'after-init-hook
+;;           `(lambda nil (setq gc-cons-threshold ,gc-cons-threshold)))
+;; (setq gc-cons-threshold (* 128 1024 1024))
+
+(setq gc-cons-threshold 64000000)
+(add-hook 'after-init-hook (lambda ()
+                             ;; restore after startup
+                             (setq gc-cons-threshold 800000)))
+
 (set-buffer-file-coding-system 'utf-8)
+
 (when window-system
   (modify-frame-parameters nil '((wait-for-wm . nil)))
   (prefer-coding-system 'utf-8)
@@ -12,12 +19,15 @@
   (add-to-list 'default-frame-alist '(font . "MeiryoKe_Console 12"))
   (add-to-list 'default-frame-alist '(width . 100))
   (add-to-list 'default-frame-alist '(alpha . (100 80))))
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 (defalias 'message-box 'message)
 (setq use-dialog-box nil)
 (if (eq system-type 'windows-nt)
     (add-to-list 'process-coding-system-alist '("cmd.exe" cp932 . cp932)))
+
 (require 'generic-x)
+
 ;; ----------------------------------------------------------------------
 ;; Add keybindigs for chromebook
 ;;   C-SPC         - toggles IME
@@ -29,18 +39,46 @@
 ;; ----------------------------------------------------------------------
 ;; Bootstrap `use-package'
 ;; ----------------------------------------------------------------------
-(require 'package)
-(setq package-enable-at-startup nil
-      use-package-verbose t
-      use-package-always-defer t)
+;; (require 'package)
+;; (setq package-enable-at-startup nil
+;;       use-package-verbose t
+;;       use-package-always-defer t)
 ;; (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+;; (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+;; (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 ;; (add-to-list 'package-archives '("SC" . "http://joseito.republika.pl/sunrise-commander/"))
+;; (package-initialize)
+;; (unless (package-installed-p 'use-package)
+;;   (package-refresh-contents)
+;;   (package-install 'use-package))
+
+(require 'package)
+
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
 (package-initialize)
+
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+
+(setq-default use-package-always-defer t
+              use-package-always-ensure t
+              ;; indent-tabs-mode nil
+              ;; tab-width 2
+              ;; css-indent-offset 2
+              )
+
+(setq ring-bell-function (lambda ()
+                           (invert-face 'mode-line)
+                           (run-with-timer 0.1 nil 'invert-face 'mode-line)))
+
 ;; ----------------------------------------------------------------------
 ;; keep .emacs.d clean (http://manuel-uberti.github.io/programming/2017/06/17/nolittering/)
 ;; ----------------------------------------------------------------------
@@ -290,6 +328,12 @@ Default to a pdf, or a html if ARG is not nil."
 (defun ipython-repl () (interactive)
        (pop-to-buffer (make-comint "ipython-repl" "ipython" nil)))
 ;; ----------------------------------------------------------------------
+;; dired
+;; ----------------------------------------------------------------------
+(with-eval-after-load "dired"
+  (bind-keys :map dired-mode-map
+             ("r" . wdired-change-to-wdired-mode)))
+;; ----------------------------------------------------------------------
 ;; Packages
 ;; ----------------------------------------------------------------------
 ;; number etc.
@@ -403,8 +447,8 @@ Default to a pdf, or a html if ARG is not nil."
                 deft-use-filename-as-title t
                 deft-use-filter-string-for-filename t
                 deft-auto-save-interval 0))
-(use-package dired
-  :bind (:map dired-mode-map ("r" . wdired-change-to-wdired-mode)))
+;; (use-package dired
+;;   :bind (:map dired-mode-map ("r" . wdired-change-to-wdired-mode)))
 (use-package dired-filter
   :ensure t)
 (use-package dired-narrow
@@ -509,7 +553,13 @@ Default to a pdf, or a html if ARG is not nil."
   (add-hook 'web-mode-hook 'highlight-indentation-mode))
 ;; I
 (use-package ivy
-  :diminish "🌿")
+  :diminish "🌿"
+  :defer 1
+  :config
+  (ivy-mode)
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "")
+  (setq ivy-use-selectable-prompt t))
 ;; (use-package ido
 ;;   :ensure t
 ;;   :bind (("C-x C-r" . my/ido-recentf-open))
@@ -561,7 +611,11 @@ Default to a pdf, or a html if ARG is not nil."
 (use-package magit
   :defer t
   :ensure t
-  :bind ("C-x g" . magit-status))
+  :bind ("C-x g" . magit-status)
+  :config
+  (put 'magit-clean 'disabled nil)
+  (add-hook 'magit-status-sections-hook 'magit-insert-worktrees)
+  (setq magit-commit-show-diff nil))
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
