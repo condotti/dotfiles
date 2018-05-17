@@ -45,8 +45,8 @@
       use-package-always-defer t)
 ;; (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
-(add-to-list 'package-archives '("SC" . "http://joseito.republika.pl/sunrise-commander/"))
+;; (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+;; (add-to-list 'package-archives '("SC" . "http://joseito.republika.pl/sunrise-commander/"))
 (package-initialize)
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -721,7 +721,7 @@ Default to a pdf, or a html if ARG is not nil."
 (use-package powerline
   ;; :if (eq system-type 'gnu/linux)
   :ensure t
-  :config
+  :init
   (powerline-default-theme))
 (use-package powershell
   :if (eq system-type 'windows-nt)
