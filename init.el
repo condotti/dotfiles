@@ -39,31 +39,31 @@
 ;; ----------------------------------------------------------------------
 ;; Bootstrap `use-package'
 ;; ----------------------------------------------------------------------
-;; (require 'package)
-;; (setq package-enable-at-startup nil
-;;       use-package-verbose t
-;;       use-package-always-defer t)
-;; (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
-;; (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-;; (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
-;; (add-to-list 'package-archives '("SC" . "http://joseito.republika.pl/sunrise-commander/"))
-;; (package-initialize)
-;; (unless (package-installed-p 'use-package)
-;;   (package-refresh-contents)
-;;   (package-install 'use-package))
-
 (require 'package)
-
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-
+(setq package-enable-at-startup nil
+      use-package-verbose t
+      use-package-always-defer t)
+;; (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+(add-to-list 'package-archives '("SC" . "http://joseito.republika.pl/sunrise-commander/"))
 (package-initialize)
-
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+;; (require 'package)
+
+;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+
+;; (add-to-list 'package-archives
+;;              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
+;; (package-initialize)
+
+;; (unless (package-installed-p 'use-package)
+;;   (package-refresh-contents)
+;;   (package-install 'use-package))
 
 (eval-when-compile
   (require 'use-package))
@@ -423,13 +423,15 @@ Default to a pdf, or a html if ARG is not nil."
   (load-theme 'cyberpunk t))
 ;; D
 (use-package dark-mint-theme
-  ;; :ensure t
+  :ensure t
   :config
   (load-theme 'dark-mint t)
-  :disabled t)
+  ;; :disabled t
+  )
 (use-package darkokai-theme
   ;; :demand t
-  :ensure t
+  ;; :ensure t
+  :disabled t
   :config
   (setq darkokai-mode-line-padding 1)
   (load-theme 'darkokai t))
