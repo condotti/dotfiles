@@ -424,8 +424,8 @@ Default to a pdf, or a html if ARG is not nil."
 ;; D
 (use-package dark-mint-theme
   :ensure t
-  :config
-  (load-theme 'dark-mint t)
+  ;; :config
+  ;; (load-theme 'dark-mint t)
   ;; :disabled t
   )
 (use-package darkokai-theme
