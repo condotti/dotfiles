@@ -508,6 +508,9 @@ Default to a pdf, or a html if ARG is not nil."
   :ensure t
   :init
   (emoji-fontset-enable "Segoe UI Symbol"))
+(use-package exwm
+  :when (eq system-type 'gnu/linux)
+  :init (exwm-config-default))
 ;; F
 ;; G
 (use-package git-auto-commit-mode
