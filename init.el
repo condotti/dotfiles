@@ -514,6 +514,10 @@ Default to a pdf, or a html if ARG is not nil."
   (require 'exwm-config)
   (exwm-config-default))
 ;; F
+(use-package fontawesome
+  :ensure t
+  :init
+  (set-fontset-font "fontset-default" '(#xf000 . #xf23a) "FontAwesome"))
 ;; G
 (use-package git-auto-commit-mode
   :ensure t
