@@ -515,6 +515,7 @@ Default to a pdf, or a html if ARG is not nil."
   (exwm-config-default))
 ;; F
 (use-package fontawesome
+  :when window-system
   :ensure t
   :init
   (set-fontset-font "fontset-default" '(#xf000 . #xf23a) "FontAwesome"))
