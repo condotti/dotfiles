@@ -386,8 +386,8 @@ Default to a pdf, or a html if ARG is not nil."
 ;;   :init
 ;;   (defalias 'nrepl-current-connection-buffer 'nrepl-connection-buffer-name))
 (use-package clj-refactor
-  ;; :ensure t
-  :disabled t
+  :ensure t
+  ;; :disabled t
   :config
   (add-hook 'clojure-mode-hook #'clj-refactor-mode)
   :init
