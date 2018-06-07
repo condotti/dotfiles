@@ -334,6 +334,14 @@ Default to a pdf, or a html if ARG is not nil."
   (bind-keys :map dired-mode-map
              ("r" . wdired-change-to-wdired-mode)))
 ;; ----------------------------------------------------------------------
+;; supress message (https://qiita.com/itiut@github/items/d917eafd6ab255629346)
+;; ----------------------------------------------------------------------
+(defmacro with-suppressed-message (&rest body)
+  "Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated."
+  (declare (indent 0))
+  (let ((message-log-max nil))
+    `(with-temp-message (or (current-message) "") ,@body)))
+;; ----------------------------------------------------------------------
 ;; Packages
 ;; ----------------------------------------------------------------------
 ;; number etc.
@@ -755,7 +763,8 @@ Default to a pdf, or a html if ARG is not nil."
         recentf-max-saved-items 200
         recentf-exclude '(".recentf"))
   :init
-  (run-with-idle-timer 30 t #'(lambda nil (recentf-save-list))))
+  (run-with-idle-timer 30 t
+                       #'(lambda nil (with-suppressed-message (recentf-save-list)))))
 (use-package recentf-ext
   :ensure t)
 (use-package re-builder
