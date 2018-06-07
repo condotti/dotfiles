@@ -513,6 +513,7 @@ Default to a pdf, or a html if ARG is not nil."
   :when (and (eq system-type 'gnu/linux) window-system)
   :init
   (require 'exwm-config)
+  (setq exwm--wmsn-replace nil)
   (exwm-config-default))
 ;; F
 (use-package fontawesome
