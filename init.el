@@ -255,6 +255,14 @@ Default to a pdf, or a html if ARG is not nil."
   (eww "http://clojure.org/cheatsheet"))
 (defun my/dummy-function (&optional arg)
   (message "dummy"))
+(defun my/wm-running? nil
+  (thread-first "wmctrl -m; echo -n $?"
+    (shell-command-to-string)
+    (split-string "\n")
+    (last)
+    (car)
+    (string-to-number)
+    (zerop)))
 ;; ----------------------------------------------------------------------
 ;; some useful functions
 ;; ----------------------------------------------------------------------
@@ -518,7 +526,9 @@ Default to a pdf, or a html if ARG is not nil."
   :init
   (emoji-fontset-enable "Segoe UI Symbol"))
 (use-package exwm
-  :when (and (eq system-type 'gnu/linux) window-system)
+  :when (and (eq system-type 'gnu/linux)
+             window-system
+             (not (my/wm-running?)))
   :init
   (require 'exwm-config)
   (setq exwm--wmsn-replace nil)
