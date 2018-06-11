@@ -350,6 +350,20 @@ Default to a pdf, or a html if ARG is not nil."
   (let ((message-log-max nil))
     `(with-temp-message (or (current-message) "") ,@body)))
 ;; ----------------------------------------------------------------------
+;; autoinsert (again ;-)
+;; ----------------------------------------------------------------------
+(require 'autoinsert)
+(add-hook 'find-file-hooks 'auto-insert)
+;; (setq auto-insert-alist nil)
+(add-to-list 'auto-insert-alist
+             '((".*/content/\\(post\\|fixed\\)/.*\\.md$" . "hugo blog post")
+               nil
+               "---\n"
+               "date: " (format-time-string "%F") "\n"
+               "title: " _ "\n"
+               "tags: []\n"
+               "---\n"))
+;; ----------------------------------------------------------------------
 ;; Packages
 ;; ----------------------------------------------------------------------
 ;; number etc.
@@ -895,6 +909,7 @@ Default to a pdf, or a html if ARG is not nil."
 (add-hook 'messages-buffer-mode-hook #'(lambda nil (setq mode-name "💬")))
 (add-hook 'text-mode-hook #'(lambda nil (setq mode-name "✎")))
 (add-hook 'clojure-mode-hook #'(lambda nil (setq mode-name "λ")))
+(add-hook 'magit-mode-hook #'(lambda nil (setq mode-name "👻")))
 (add-to-list 'auto-mode-alist '("\\.eml\\'" . text-mode))
 ;; ----------------------------------------------------------------------
 ;; Customize interface
