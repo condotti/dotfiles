@@ -263,6 +263,14 @@ Default to a pdf, or a html if ARG is not nil."
     (car)
     (string-to-number)
     (zerop)))
+(defun my/max-width-for-embedded-instagram (w)
+  "Replace max-width: property of embedded instagram code to W px. Default is 300px."
+  (interactive "p")
+  (save-excursion
+    (let ((new-prop (format "max-width:%dpx" (if (= w 1) 300 w))))
+      (goto-char (point-min))
+      (while (re-search-forward "max-width: *[0-9]+px" nil t)
+        (replace-match new-prop nil nil)))))
 ;; ----------------------------------------------------------------------
 ;; some useful functions
 ;; ----------------------------------------------------------------------
