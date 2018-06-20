@@ -768,7 +768,7 @@ Default to a pdf, or a html if ARG is not nil."
 (use-package peep-dired
   :ensure t
   :defer t
-  :bind (:map dired-mode-map ("P" . peep-dired)))
+  :bind (:map dired-mode-map ("C-c p" . peep-dired)))
 (use-package powerline
   ;; :if (eq system-type 'gnu/linux)
   :ensure t
