@@ -853,6 +853,10 @@ Default to a pdf, or a html if ARG is not nil."
 (use-package toml-mode
   :ensure t
   :mode "\\.toml\\'")
+(use-package transpose-frame
+  :ensure t
+  :bind (("C-c t" . transpose-frame)
+         ("C-c r" . rotate-frame)))
 ;; U
 ;; V
 (use-package vdiff
@@ -929,7 +933,10 @@ Default to a pdf, or a html if ARG is not nil."
 ;; ----------------------------------------------------------------------
 (when (equal system-name "isidg58935")
   (custom-set-variables '(browse-url-browser-function 'browse-url-chrome)
-                        '(browse-url-chrome-program "d:/USER/Program/PortableApps/PortableApps/GoogleChromePortable64/GoogleChromePortable.exe")))
+                        '(browse-url-chrome-program "d:/USER/Program/PortableApps/PortableApps/GoogleChromePortable64/GoogleChromePortable.exe")
+                        '(diff-command "d:/USER/Program/cygwin/bin/diff.exe")
+                        '(ediff-diff-program "d:/USER/Program/cygwin/bin/diff.exe")
+                        '(ediff-diff3-program "d:/USER/Program/cygwin/bin/diff3.exe")))
 ;; ----------------------------------------------------------------------
 ;; End of init.el
 ;; ----------------------------------------------------------------------
