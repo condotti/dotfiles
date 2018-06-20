@@ -23,8 +23,8 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (defalias 'message-box 'message)
 (setq use-dialog-box nil)
-(if (eq system-type 'windows-nt)
-    (add-to-list 'process-coding-system-alist '("cmd.exe" cp932 . cp932)))
+;; (if (eq system-type 'windows-nt)
+;;     (add-to-list 'process-coding-system-alist '("cmd.exe" cp932 . cp932)))
 
 (require 'generic-x)
 
@@ -383,8 +383,9 @@ Default to a pdf, or a html if ARG is not nil."
 (use-package ag
   :ensure t
   :config
-  (when (eq system-type 'windows-nt)
-    (setq default-process-coding-system '(utf-8-dos . cp932))))
+  ;; (when (eq system-type 'windows-nt)
+  ;;   (setq default-process-coding-system '(utf-8-dos . cp932)))
+  )
 (use-package aggressive-indent
   :ensure t
   :config
@@ -801,6 +802,9 @@ Default to a pdf, or a html if ARG is not nil."
 (use-package re-builder
   :bind (("C-c R" . re-builder))
   :config (setq reb-re-syntax 'string))
+(use-package rg
+  :ensure t
+  :init (rg-enable-default-bindings (kbd "M-s")))
 (use-package rust-mode
   :ensure t
   :mode "\\.rs\\'"
