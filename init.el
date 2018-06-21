@@ -372,6 +372,12 @@ Default to a pdf, or a html if ARG is not nil."
                "tags: []\n"
                "---\n"))
 ;; ----------------------------------------------------------------------
+;; now display-line-numbers are official in emacs 26
+;; ----------------------------------------------------------------------
+(global-display-line-numbers-mode 1)
+(advice-add #'display-line-numbers-mode :around
+            #'(lambda (f &rest args) (when (buffer-file-name) (apply f args))))
+;; ----------------------------------------------------------------------
 ;; Packages
 ;; ----------------------------------------------------------------------
 ;; number etc.
@@ -901,20 +907,20 @@ Default to a pdf, or a html if ARG is not nil."
   (setq wttrin-default-cities '("Tokyo" "Yokohama")))
 ;; X
 ;; Y
-(use-package yalinum
-  :ensure t
-  :config
-  (setq yalinum-delay t
-        yalinum-eager nil
-        yalinum-format "%5d ")
-  :init
-  ;; (defadvice yalinum-on (around yalinum-on-around)
-  ;;   (when (buffer-file-name)
-  ;;     ad-do-it))
-  (advice-add #'yalinum-on :around
-              (lambda (f &rest args) (when (buffer-file-name) (apply f args))))
-  ;; (add-function :before-until 'yalinum-on #'(lambda nil (null (buffer-file-name))))
-  (global-yalinum-mode 1))
+;; (use-package yalinum
+;;   :ensure t
+;;   :config
+;;   (setq yalinum-delay t
+;;         yalinum-eager nil
+;;         yalinum-format "%5d ")
+;;   :init
+;;   ;; (defadvice yalinum-on (around yalinum-on-around)
+;;   ;;   (when (buffer-file-name)
+;;   ;;     ad-do-it))
+;;   (advice-add #'yalinum-on :around
+;;               (lambda (f &rest args) (when (buffer-file-name) (apply f args))))
+;;   ;; (add-function :before-until 'yalinum-on #'(lambda nil (null (buffer-file-name))))
+;;   (global-yalinum-mode 1))
 ;; Z
 ;; ----------------------------------------------------------------------
 ;; misc settings
