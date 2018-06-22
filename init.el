@@ -685,9 +685,9 @@ Default to a pdf, or a html if ARG is not nil."
          ("\\.gfm\\'" . gfm-mode))
   :init
   (setq markdown-command-needs-filename t)
-  (when (eq system-type 'windows-nt)
-    (setq markdown-command "pandoc.exe"))
-  )
+  (setq markdown-command
+        (if (eq system-type 'windows-nt) "pandoc.exe"
+          (if (eq system-type 'gnu/linux) "pandoc" "markdown"))))
 (use-package markdown-preview-mode
   :ensure t
   :config
