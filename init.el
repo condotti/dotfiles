@@ -378,6 +378,10 @@ Default to a pdf, or a html if ARG is not nil."
 (advice-add #'display-line-numbers-mode :around
             #'(lambda (f &rest args) (when (buffer-file-name) (apply f args))))
 ;; ----------------------------------------------------------------------
+;; hideshow
+;; ----------------------------------------------------------------------
+(require 'hideshow)
+;; ----------------------------------------------------------------------
 ;; Packages
 ;; ----------------------------------------------------------------------
 ;; number etc.
@@ -485,6 +489,8 @@ Default to a pdf, or a html if ARG is not nil."
   ;; :if (not window-system)
   :ensure t
   :bind ("C-x C-j" . skk-mode))
+(use-package define-word
+  :ensure t)
 (use-package deft
   :ensure t
   :bind (("C-c d" . deft))
@@ -606,6 +612,8 @@ Default to a pdf, or a html if ARG is not nil."
   (require 'helm-config)
   (setq helm-M-x-always-save-history t)
   :diminish "")
+(use-package helpful
+  :ensure t)
 (use-package highlight-indentation
   :ensure t
   :config
@@ -822,6 +830,14 @@ Default to a pdf, or a html if ARG is not nil."
   :ensure t
   :bind (("M-\\" . shrink-whitespace)))
 (use-package simple-httpd
+  :ensure t)
+(use-package slime
+  :ensure t
+  :config
+  (setq inferior-lisp-program "sbcl")
+  :init
+  (slime-setup '(slime-repl slime-fancy slime-banner slime-company)))
+(use-package slime-company
   :ensure t)
 (use-package smex
   :ensure t
