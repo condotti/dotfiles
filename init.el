@@ -207,7 +207,8 @@
                                      "--header-spacing 2"
                                      "--footer-spacing 2"
                                      "--disable-smart-shrinking"
-                                     "--print-media-type")
+                                     "--print-media-type"
+                                     "--no-outline")
                                    " "))
 (defun my/adoc-export (arg)
   "Convert asciidoc file to a html or a pdf by using asciidoctor.
@@ -668,7 +669,9 @@ Default to a pdf, or a html if ARG is not nil."
   :init
   (dolist (h '(emacs-lisp-mode-hook
                clojure-mode-hook
-               cider-repl-mode-hook))
+               cider-repl-mode-hook
+               lisp-mode-hook
+               slime-repl-mode-hook))
     (add-hook h (lambda nil (lispy-mode 1))))
   :bind (:map lispy-mode-map-lispy
               (":" . self-insert-command)
