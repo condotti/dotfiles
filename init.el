@@ -468,6 +468,8 @@ Default to a pdf, or a html if ARG is not nil."
   :ensure t
   :bind (("M-x" . counsel-M-x)
          ("C-x C-f" . counsel-find-file)))
+(use-package csv-mode
+  :ensure t)
 (use-package cyberpunk-theme
   :disabled t
   :config
