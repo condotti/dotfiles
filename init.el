@@ -492,6 +492,8 @@ Default to a pdf, or a html if ARG is not nil."
   ;; :if (not window-system)
   :ensure t
   :bind ("C-x C-j" . skk-mode))
+(use-package deadgrep
+  :ensure t)
 (use-package define-word
   :ensure t)
 (use-package deft
