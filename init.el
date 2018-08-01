@@ -675,7 +675,9 @@ Default to a pdf, or a html if ARG is not nil."
                clojure-mode-hook
                cider-repl-mode-hook
                lisp-mode-hook
-               slime-repl-mode-hook))
+               slime-repl-mode-hook
+               racket-mode-hook
+               racket-repl-mode-hook))
     (add-hook h (lambda nil (lispy-mode 1))))
   :bind (:map lispy-mode-map-lispy
               (":" . self-insert-command)
@@ -803,6 +805,12 @@ Default to a pdf, or a html if ARG is not nil."
   :mode ("\\.ps1\\'" . powershell-mode))
 ;; Q
 ;; R
+(use-package racket-mode
+  :ensure t
+  :config
+  (add-hook 'racket-mode-hook #'(lambda nil (setq mode-name "🎾")))
+  (when (eq system-type 'windows-nt)
+    (setq racket-program "c:/Program Files/Racket/Racket.exe")))
 (use-package racer
   ;; :ensure t
   :disabled t                           ; disabled temporarily
