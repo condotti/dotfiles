@@ -579,6 +579,10 @@ Default to a pdf, or a html if ARG is not nil."
   :init
   (set-fontset-font "fontset-default" '(#xf000 . #xf23a) "FontAwesome"))
 ;; G
+(use-package geiser
+  :ensure t
+  :config
+  (setq geiser-racket-binary "c:/Program Files/Racket/Racket.exe"))
 (use-package git-auto-commit-mode
   :ensure t
   :diminish "🚗")
@@ -676,8 +680,10 @@ Default to a pdf, or a html if ARG is not nil."
                cider-repl-mode-hook
                lisp-mode-hook
                slime-repl-mode-hook
-               racket-mode-hook
-               racket-repl-mode-hook))
+               ;; racket-mode-hook
+               ;; racket-repl-mode-hook
+               scheme-mode-hook
+               geiser-repl-mode-hook))
     (add-hook h (lambda nil (lispy-mode 1))))
   :bind (:map lispy-mode-map-lispy
               (":" . self-insert-command)
@@ -805,12 +811,12 @@ Default to a pdf, or a html if ARG is not nil."
   :mode ("\\.ps1\\'" . powershell-mode))
 ;; Q
 ;; R
-(use-package racket-mode
-  :ensure t
-  :config
-  (add-hook 'racket-mode-hook #'(lambda nil (setq mode-name "🎾")))
-  (when (eq system-type 'windows-nt)
-    (setq racket-program "c:/Program Files/Racket/Racket.exe")))
+;; (use-package racket-mode
+;;   :ensure t
+;;   :config
+;;   (add-hook 'racket-mode-hook #'(lambda nil (setq mode-name "🎾")))
+;;   (when (eq system-type 'windows-nt)
+;;     (setq racket-program "c:/Program Files/Racket/Racket.exe")))
 (use-package racer
   ;; :ensure t
   :disabled t                           ; disabled temporarily
@@ -964,6 +970,7 @@ Default to a pdf, or a html if ARG is not nil."
 (add-hook 'text-mode-hook #'(lambda nil (setq mode-name "✎")))
 (add-hook 'clojure-mode-hook #'(lambda nil (setq mode-name "λ")))
 (add-hook 'magit-mode-hook #'(lambda nil (setq mode-name "👻")))
+(add-hook 'scheme-mode-hook #'(lambda nil (setq mode-name "🎭")))
 (add-to-list 'auto-mode-alist '("\\.eml\\'" . text-mode))
 ;; ----------------------------------------------------------------------
 ;; Customize interface
