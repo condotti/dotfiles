@@ -273,6 +273,10 @@ Default to a pdf, or a html if ARG is not nil."
       (while (re-search-forward "max-width: *[0-9]+px" nil t)
         (replace-match new-prop nil nil)))))
 ;; ----------------------------------------------------------------------
+;; Insert a week schedule table into markdown buffer (wip)
+;; ----------------------------------------------------------------------
+;; (defun my/insert-week-table )
+;; ----------------------------------------------------------------------
 ;; some useful functions
 ;; ----------------------------------------------------------------------
 ;;  from: http://ensime.github.io/editors/emacs/hacks/
