@@ -387,6 +387,16 @@ Default to a pdf, or a html if ARG is not nil."
 ;; ----------------------------------------------------------------------
 (require 'hideshow)
 ;; ----------------------------------------------------------------------
+;; workaround to the problem of ~/.emacs.d/server/
+;; (https://stackoverflow.com/questions/885793/emacs-error-when-calling-server-start/17069276#17069276)
+;; (defadvice server-ensure-safe-dir (around
+;;                                    my-around-server-ensure-safe-dir
+;;                                    activate)
+;;   "Ignores any errors raised from server-ensure-safe-dir"
+;;   (ignore-errors ad-do-it))
+(advice-add #'server-ensure-safe-dir :around
+            #'(lambda (f &rest args) (ignore-errors (apply f args))))
+;; ----------------------------------------------------------------------
 ;; Packages
 ;; ----------------------------------------------------------------------
 ;; number etc.
@@ -526,9 +536,11 @@ Default to a pdf, or a html if ARG is not nil."
   :config
   (when (eq system-type 'windows-nt)
     (setq doc-view-ghostscript-program
-          "C:/Program Files/Bullzip/PDF Printer/gs/gswin64c.exe"
+          ;; "C:/Program Files/Bullzip/PDF Printer/gs/gswin64c.exe"
+          "c:/Program Files/gs/gs9.26/bin/gswin64c.exe"
           doc-view-pdftotext-program
-          "d:/USER/Program/PortableApps/PortableApps/xpdf-3.04/pdftotext.exe"
+          ;; "d:/USER/Program/PortableApps/PortableApps/xpdf-3.04/pdftotext.exe"
+          "c:/ProgramData/chocolatey/bin/pdftotext.exe"
           doc-view-odf->pdf-converter-program
           "d:/USER/Program/PortableApps/PortableApps/LibreOfficePortable/LibreOfficePortable.exe"))
   (when (eq system-type 'gnu/linux)
@@ -536,7 +548,7 @@ Default to a pdf, or a html if ARG is not nil."
           '(("\\.pdf\\'" "evince"))))
   (when (eq system-type 'windows-nt)
     (setq dired-guess-shell-alist-user
-          '(("\\.pdf\\'" "")))))
+          '(("\\.pdf\\'" "acrord32")))))
 (use-package dumb-jump
   :config
   (when (equal system-type 'windows-nt)
