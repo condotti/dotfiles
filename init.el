@@ -180,6 +180,9 @@
   (interactive "nyyyy: \nnmm: \nndd: ")
   (insert (format-time-string "%m/%d(%a) "
                               (encode-time 0 0 0 d m y))))
+(defun my/concat (separator &rest sequence)
+  "Concatenates a SEQUENCE of strings with a SEPARATOR"
+  (mapconcat #'identity sequence separator))
 (defun my/org-export-to-pdf ()
   "Export .org to pdf file using wkhtmltopdf."
   (interactive)
@@ -187,29 +190,31 @@
     (when (eq major-mode 'org-mode)
       (let* ((html-file (org-html-export-to-html))
              (pdf-file (concat (file-name-sans-extension html-file) ".pdf")))
-        (shell-command (mapconcat #'identity
-                                  (list my-htmltopdf-program my-htmltopdf-args
-                                        (expand-file-name html-file)
-                                        (file-name-nondirectory pdf-file))
-                                  " "))
+        ;; (shell-command (mapconcat #'identity
+        ;;                           (list my-htmltopdf-program my-htmltopdf-args
+        ;;                                 (expand-file-name html-file)
+        ;;                                 (file-name-nondirectory pdf-file))
+        ;;                           " "))
+        (shell-command (my/concat " " (list my-htmltopdf-program my-htmltopdf-args
+                                            (expand-file-name html-file)
+                                            (file-name-nondirectory pdf-file))))
         (find-file pdf-file)))))
 (setq my-htmltopdf-program (if (eq system-type 'windows-nt)
                                "\"c:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe\""
                              "wkhtmltopdf")
-      my-htmltopdf-args (mapconcat #'identity
-                                   '("--header-left [doctitle]"
-                                     "--footer-center [page]/[toPage]"
-                                     "--header-line --footer-line"
-                                     "--header-right [date]"
-                                     "--header-font-size 10"
-                                     "--footer-font-size 10"
-                                     "--margin-top 20"
-                                     "--header-spacing 2"
-                                     "--footer-spacing 2"
-                                     "--disable-smart-shrinking"
-                                     "--print-media-type"
-                                     "--no-outline")
-                                   " "))
+      my-htmltopdf-args (my/concat " "
+                                   "--header-left [doctitle]"
+                                   "--footer-center [page]/[toPage]"
+                                   "--header-line --footer-line"
+                                   "--header-right [date]"
+                                   "--header-font-size 10"
+                                   "--footer-font-size 10"
+                                   "--margin-top 20"
+                                   "--header-spacing 2"
+                                   "--footer-spacing 2"
+                                   "--disable-smart-shrinking"
+                                   "--print-media-type"
+                                   "--no-outline"))
 (defun my/adoc-export (arg)
   "Convert asciidoc file to a html or a pdf by using asciidoctor.
 Default to a pdf, or a html if ARG is not nil."
@@ -220,18 +225,24 @@ Default to a pdf, or a html if ARG is not nil."
              (html-file (concat (file-name-sans-extension buffer-file-name) ".html")))
         (if (= arg 1)
             (progn
-              (shell-command (mapconcat #'identity
-                                        (list my/adoc-to-html-program
+              (shell-command (my/concat " " (list my/adoc-to-html-program
                                               my/adoc-to-html-args
-                                              buffer-file-name)
-                                        " "))
+                                              buffer-file-name)))
+              ;; (shell-command (mapconcat #'identity
+              ;;                           (list my/adoc-to-html-program
+              ;;                                 my/adoc-to-html-args
+              ;;                                 buffer-file-name)
+              ;;                           " "))
               (eww-open-file html-file)) ; View with eww
           (progn
-            (shell-command (mapconcat #'identity
-                                      (list my/adoc-to-pdf-program
+            (shell-command (my/concat " " (list my/adoc-to-pdf-program
                                             my/adoc-to-pdf-args
-                                            buffer-file-name)
-                                      " "))
+                                            buffer-file-name)))
+            ;; (shell-command (mapconcat #'identity
+            ;;                           (list my/adoc-to-pdf-program
+            ;;                                 my/adoc-to-pdf-args
+            ;;                                 buffer-file-name)
+            ;;                           " "))
             (find-file pdf-file)))))    ; View with docview
     )
   )
@@ -272,6 +283,24 @@ Default to a pdf, or a html if ARG is not nil."
       (goto-char (point-min))
       (while (re-search-forward "max-width: *[0-9]+px" nil t)
         (replace-match new-prop nil nil)))))
+;; ----------------------------------------------------------------------
+;; Enables ime when startup (send F10 twice) by powershell.exe
+;; ----------------------------------------------------------------------
+(defun my/enable-ime nil
+  "Sends F10 twice by powershell.exe"
+  (let* ((f10 "[System.Windows.Forms.SendKeys]::SendWait(\"\\\"{F10}\\\"\")")
+         (script (concat "\"" (my/concat "; "
+                                         "Add-Type -AssemblyName System.Windows.Forms"
+                                         "Start-Sleep 1"
+                                         f10
+                                         "Start-Sleep 1"
+                                         f10
+                                         "Exit")
+                         "\""))
+         (command (my/concat " " "powershell.exe" "-Command" script)))
+    (shell-command-to-string command)))
+(when (eq system-type 'windows-nt)
+  (add-hook 'window-setup-hook #'my/enable-ime))
 ;; ----------------------------------------------------------------------
 ;; Insert a week schedule table into markdown buffer (wip)
 ;; ----------------------------------------------------------------------
