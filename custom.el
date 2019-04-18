@@ -53,7 +53,7 @@
      ("screen" . shell-script))))
  '(package-selected-packages
    (quote
-    (markdown-preview-eww markdown-preview-mode request edit-server atomic-chrome dark-mint-theme ein nubox darkokai-theme i3wm recentf-ext simple-httpd all-the-icons-dired all-the-icons sql-indent paredit dired-icon ox-twbs dired-filter kosmos-theme material-theme ag sicp lyrics vdiff highlight-indentation visutal-indentation-mode highlight-indent-guides multiple-cursors dumb-jump dump-jump sunshine wttrin org company-go go-eldoc powershell yalinum w3m undo-tree tiny tabbar sunrise-commander stripe-buffer shrink-whitespace popwin peep-dired mozc-popup markdown-mode+ lacarte jade-mode j-mode gnuplot-mode gnuplot fuzzy frame-cmds evil-numbers esup direx cyberpunk-theme clojure-mode-extra-font-locking auto-package-update auto-compile adoc-mode ac-mozc 2048-game)))
+    (ivy markdown-preview-eww markdown-preview-mode request edit-server atomic-chrome dark-mint-theme ein nubox darkokai-theme i3wm recentf-ext simple-httpd all-the-icons-dired all-the-icons sql-indent paredit dired-icon ox-twbs dired-filter kosmos-theme material-theme ag sicp lyrics vdiff highlight-indentation visutal-indentation-mode highlight-indent-guides multiple-cursors dumb-jump dump-jump sunshine wttrin org company-go go-eldoc powershell yalinum w3m undo-tree tiny tabbar sunrise-commander stripe-buffer shrink-whitespace popwin peep-dired mozc-popup markdown-mode+ lacarte jade-mode j-mode gnuplot-mode gnuplot fuzzy frame-cmds evil-numbers esup direx cyberpunk-theme clojure-mode-extra-font-locking auto-package-update auto-compile adoc-mode ac-mozc 2048-game)))
  '(paradox-automatically-star t)
  '(paradox-github-token t)
  '(pos-tip-background-color "#E6DB74")
