@@ -195,13 +195,13 @@
         ;;                                 (expand-file-name html-file)
         ;;                                 (file-name-nondirectory pdf-file))
         ;;                           " "))
-        (shell-command (my/concat " " (list my-htmltopdf-program my-htmltopdf-args
-                                            (expand-file-name html-file)
-                                            (file-name-nondirectory pdf-file))))
+        (shell-command (my/concat " " my-htmltopdf-program my-htmltopdf-args (expand-file-name html-file)
+                                  (file-name-nondirectory pdf-file)))
         (find-file pdf-file)))))
-(setq my-htmltopdf-program (if (eq system-type 'windows-nt)
-                               "\"c:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe\""
-                             "wkhtmltopdf")
+(setq my-htmltopdf-program "wkhtmltopdf"
+      ;; (if (eq system-type 'windows-nt)
+      ;;     "\"c:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe\""
+      ;;   "wkhtmltopdf")
       my-htmltopdf-args (my/concat " "
                                    "--header-left [doctitle]"
                                    "--footer-center [page]/[toPage]"
@@ -225,9 +225,7 @@ Default to a pdf, or a html if ARG is not nil."
              (html-file (concat (file-name-sans-extension buffer-file-name) ".html")))
         (if (= arg 1)
             (progn
-              (shell-command (my/concat " " (list my/adoc-to-html-program
-                                              my/adoc-to-html-args
-                                              buffer-file-name)))
+              (shell-command (my/concat " " my/adoc-to-html-program my/adoc-to-html-args buffer-file-name))
               ;; (shell-command (mapconcat #'identity
               ;;                           (list my/adoc-to-html-program
               ;;                                 my/adoc-to-html-args
@@ -235,9 +233,7 @@ Default to a pdf, or a html if ARG is not nil."
               ;;                           " "))
               (eww-open-file html-file)) ; View with eww
           (progn
-            (shell-command (my/concat " " (list my/adoc-to-pdf-program
-                                            my/adoc-to-pdf-args
-                                            buffer-file-name)))
+            (shell-command (my/concat " " my/adoc-to-pdf-program my/adoc-to-pdf-args buffer-file-name))
             ;; (shell-command (mapconcat #'identity
             ;;                           (list my/adoc-to-pdf-program
             ;;                                 my/adoc-to-pdf-args
