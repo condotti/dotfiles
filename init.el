@@ -67,7 +67,7 @@
 	       nil
 	       "---\n"
 	       "date: " (format-time-string "%F") "\n"
-	       "title:" _ "\n"
+	       "title: " _ "\n"
 	       "tags: []\n"
 	       "---\n\n"
 	       "<!-- Local Variables: -->\n"
