@@ -56,7 +56,8 @@
   (add-to-list 'default-frame-alist '(width . 100)))
 (advice-add #'display-line-numbers-mode :around
 	    #'(lambda (f &rest args) (when (buffer-file-name) (apply f args))))
-(set-buffer-file-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+
 ;; ----------------------------------------------------------------------
 ;; autoinsert
 ;; ----------------------------------------------------------------------
