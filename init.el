@@ -52,7 +52,8 @@
 (defalias 'message-box 'message)
 (setq use-dialog-box nil)
 (when window-system
-  (add-to-list 'default-frame-alist '(font . "MeiryoKe_Console 12"))
+  ;; (add-to-list 'default-frame-alist '(font . "MeiryoKe_Console 12"))
+  (set-face-attribute 'default nil :family "MeiryoKe_Console" :height 120)
   (add-to-list 'default-frame-alist '(width . 100)))
 (advice-add #'display-line-numbers-mode :around
 	    #'(lambda (f &rest args) (when (buffer-file-name) (apply f args))))
