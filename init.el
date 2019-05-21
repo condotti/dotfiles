@@ -54,6 +54,7 @@
 (when window-system
   ;; (add-to-list 'default-frame-alist '(font . "MeiryoKe_Console 12"))
   (set-face-attribute 'default nil :family "MeiryoKe_Console" :height 120)
+  (setq use-default-font-for-symbols nil)
   (add-to-list 'default-frame-alist '(width . 100)))
 (advice-add #'display-line-numbers-mode :around
 	    #'(lambda (f &rest args) (when (buffer-file-name) (apply f args))))
@@ -171,7 +172,8 @@
   :config
   (require 'recentf)
   (add-to-list 'recentf-exclude no-littering-var-directory)
-  (add-to-list 'recentf-exclude no-littering-etc-directory))
+  (add-to-list 'recentf-exclude no-littering-etc-directory)
+  (setq recentf-auto-save-timer (run-with-idle-timer 30 t #'recentf-save-list)))
 
 (use-package powerline
   :init (powerline-default-theme))
