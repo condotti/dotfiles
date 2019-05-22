@@ -59,6 +59,7 @@
 (advice-add #'display-line-numbers-mode :around
 	    #'(lambda (f &rest args) (when (buffer-file-name) (apply f args))))
 (prefer-coding-system 'utf-8)
+(setq recentf-auto-save-timer (run-with-idle-timer 30 t #'recentf-save-list))
 
 ;; ----------------------------------------------------------------------
 ;; autoinsert
@@ -168,15 +169,10 @@
 	org-adapt-indentation nil)
   :bind (:map org-mode-map ("C-c p" . my/org-export-to-pdf)))
 
-(use-package no-littering
-  :config
-  (require 'recentf)
-  (add-to-list 'recentf-exclude no-littering-var-directory)
-  (add-to-list 'recentf-exclude no-littering-etc-directory)
-  (setq recentf-auto-save-timer (run-with-idle-timer 30 t #'recentf-save-list)))
-
 (use-package powerline
   :init (powerline-default-theme))
+
+(use-package recentf-ext)
 
 ;; ----------------------------------------------------------------------
 ;; End of init.el
