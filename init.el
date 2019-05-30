@@ -160,7 +160,9 @@
 			   ('windows-nt "pandoc.exe")
 			   ('gnu/linux " pandoc")
 			   (t "markdown"))
-	markdown-split-window-direction 'right))
+	markdown-split-window-direction 'right)
+  :config
+  (my/set-faces-attribute "^markdown-" :family "MeiryoKe_Console" :height 120))
 
 (use-package org
   :straight nil
