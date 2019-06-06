@@ -162,7 +162,7 @@
 			   (t "markdown"))
 	markdown-split-window-direction 'right)
   :config
-  (my/set-faces-attribute "^markdown-" :family "MeiryoKe_Console" :height 120))
+  (set-face-attribute 'markdown-table-face nil :inherit 'default))
 
 (use-package org
   :straight nil
