@@ -79,12 +79,6 @@
 	       "<!-- End: -->\n"))
 
 ;; ----------------------------------------------------------------------
-;; my utils
-;; ----------------------------------------------------------------------
-(straight-use-package
- '(my :type git :host github :repo "condotti/my-util-el"))
-
-;; ----------------------------------------------------------------------
 ;; Packages
 ;; ----------------------------------------------------------------------
 (use-package counsel
@@ -128,6 +122,11 @@
     (setq dired-guess-shell-alist-user
           '(("\\.pdf\\'" "acrord32")))))
 
+(use-package eshell-toggle
+  :straight (:type git :host github :repo "4DA/eshell-toggle")
+  :custom (eshell-toggle-size-fraction 3)
+  :bind ("C-c s" . eshell-toggle))
+
 (use-package lispy
   :init
   (dolist (hook '(lisp-mode-hook
@@ -163,6 +162,9 @@
 	markdown-split-window-direction 'right)
   :config
   (set-face-attribute 'markdown-table-face nil :inherit 'default))
+
+(use-package my
+  :straight (:type git :host github :repo "condotti/my-util-el"))
 
 (use-package org
   :straight nil
