@@ -84,13 +84,8 @@
 ;; ----------------------------------------------------------------------
 (when (eq system-type 'gnu/linux)
   (let* ((anthy-prefix "/usr/local")
-	 ;; (anthy-bindir (concat anthy-prefix "/bin"))
-	 ;; (anthy-libdir (concat anthy-prefix "/lib"))
 	 (anthy-lispdir (concat anthy-prefix "/share/emacs/site-lisp/anthy")))
-    ;; (add-to-list 'exec-path anthy-bindir)
     (add-to-list 'load-path anthy-lispdir)
-    ;; (setenv "PATH" (concat (getenv "PATH") path-separator anthy-bindir))
-    ;; (setenv "LD_LIBRARY_PATH" anthy-libdir)
     (define-obsolete-variable-alias 'last-command-char 'last-command-event
       "at least 19.34")
     (load-library "anthy")
