@@ -90,7 +90,8 @@
       "at least 19.34")
     (load-library "anthy")
     (load-library "leim-list")
-    (setq default-input-method 'japanese-anthy)))
+    (setq default-input-method 'japanese-anthy
+	  anthy-accept-timeout 1)))
 
 ;; ----------------------------------------------------------------------
 ;; Packages
