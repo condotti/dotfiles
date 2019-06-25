@@ -96,6 +96,7 @@
 ;; ----------------------------------------------------------------------
 ;; Packages
 ;; ----------------------------------------------------------------------
+(use-package all-the-icons)
 
 (use-package counsel
   :bind (("C-x C-r" . counsel-recentf)
@@ -137,6 +138,10 @@
   (when (eq system-type 'windows-nt)
     (setq dired-guess-shell-alist-user
           '(("\\.pdf\\'" "acrord32")))))
+
+(use-package edit-server
+  :config
+  (edit-server-start))
 
 (use-package eshell-toggle
   :straight (:type git :host github :repo "4DA/eshell-toggle")
