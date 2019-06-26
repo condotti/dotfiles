@@ -187,6 +187,12 @@
 (use-package my
   :straight (:type git :host github :repo "condotti/my-util-el"))
 
+(use-package neotree
+  :bind ("C-c t" . neotree-toggle)
+  :custom
+  (neo-theme (if (display-graphic-p) 'classic 'arrow))
+  (neo-show-hidden-files t))
+
 (use-package org
   :straight nil
   :config
