@@ -79,24 +79,22 @@
 	       "<!-- End: -->\n"))
 
 ;; ----------------------------------------------------------------------
-;; anthy for chromebook
-;;   assumes anthy is configured with default prefix (/usr/local)
-;; ----------------------------------------------------------------------
-(when (eq system-type 'gnu/linux)
-  (let* ((anthy-prefix "/usr/local")
-	 (anthy-lispdir (concat anthy-prefix "/share/emacs/site-lisp/anthy")))
-    (add-to-list 'load-path anthy-lispdir)
-    (define-obsolete-variable-alias 'last-command-char 'last-command-event
-      "at least 19.34")
-    (load-library "anthy")
-    (load-library "leim-list")
-    (setq default-input-method 'japanese-anthy
-	  anthy-accept-timeout 1)))
-
-;; ----------------------------------------------------------------------
 ;; Packages
 ;; ----------------------------------------------------------------------
 (use-package all-the-icons)
+
+(use-package anthy
+  :straight (:type git :host github :repo "condotti/anthy-el")
+  :config
+  (define-obsolete-variable-alias 'last-command-char 'last-command-event "at least 19.34")
+  :init
+  (when (eq system-type 'windows-nt)
+    ;; dirty fix; ignoring anthy-personality, directly start anthy-agent process with wsl
+    (advice-add 'anthy-do-invoke-agent :override
+		#'(lambda (cmd) (start-process "anthy-agent" anthy-working-buffer "wsl" cmd))))
+  (load-library "leim-list")
+  (setq default-input-method 'japanese-anthy
+	anthy-accept-timeout 1))
 
 (use-package counsel
   :bind (("C-x C-r" . counsel-recentf)
