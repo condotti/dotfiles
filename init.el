@@ -87,11 +87,18 @@
   :straight (:type git :host github :repo "condotti/anthy-el")
   :config
   (define-obsolete-variable-alias 'last-command-char 'last-command-event "at least 19.34")
+  (define-obsolete-function-alias 'string-to-int 'string-to-number "at least 26.1")
   :init
   (when (eq system-type 'windows-nt)
-    ;; dirty fix; ignoring anthy-personality, directly start anthy-agent process with wsl
-    (advice-add 'anthy-do-invoke-agent :override
-		#'(lambda (cmd) (start-process "anthy-agent" anthy-working-buffer "wsl" cmd))))
+    (advice-add 'anthy-do-invoke-agent :around
+		#'(lambda (f &rest args) (let ((my/anthy-context t)) (apply f args))))
+    (advice-add 'anthy-add-word :around
+		#'(lambda (f &rest args) (let ((my/anthy-context t)) (apply f args))))
+    (advice-add 'start-process :around
+		#'(lambda (f name buffer program &rest args)
+		    (if (boundp 'my/anthy-context)
+			(apply f (cons name (cons buffer (cons "wsl" (cons program args)))))
+		      (apply f (cons name (cons buffer (cons program args))))))))
   (load-library "leim-list")
   (setq default-input-method 'japanese-anthy
 	anthy-accept-timeout 1))
