@@ -76,6 +76,7 @@
 	       "---\n\n"
 	       "<!-- Local Variables: -->\n"
 	       "<!-- truncate-lines: t -->\n"
+	       "<!-- eval: (add-hook 'before-save-hook #'(lambda nil (save-excursion (goto-char (point-min)) (while (re-search-forward \"max-width: *[0-9]+px\" nil t) (replace-match \"max-width: 300px\" nil nil)))) nil t) -->\n"
 	       "<!-- End: -->\n"))
 
 ;; ----------------------------------------------------------------------
