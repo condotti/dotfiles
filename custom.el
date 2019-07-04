@@ -20,7 +20,18 @@
  '(recentf-mode t)
  '(safe-local-variable-values
    (quote
-    ((org-html-postamble-format
+    ((eval add-hook
+	   (quote before-save-hook)
+	   (function
+	    (lambda nil
+	      (save-excursion
+		(goto-char
+		 (point-min))
+		(while
+		    (re-search-forward "max-width: *[0-9]+px" nil t)
+		  (replace-match "max-width: 300px" nil nil)))))
+	   nil t)
+     (org-html-postamble-format
       ("en" "<div style='text-align:right'>以上</div>"))
      (org-html-postamble . t)
      (org-html-preamble-format

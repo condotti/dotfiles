@@ -124,6 +124,9 @@
 (use-package ddskk
   :bind ("C-x C-j" . skk-mode))
 
+(use-package ddskk-posframe
+  :custom (ddskk-posframe-mode t))
+
 (use-package dired
   :straight nil
   :bind (:map dired-mode-map ("r" . wdired-change-to-wdired-mode)))
