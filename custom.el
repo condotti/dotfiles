@@ -14,6 +14,10 @@
  '(display-time-mode t)
  '(global-display-line-numbers-mode t)
  '(global-prettify-symbols-mode t)
+ '(glyphless-char-display-control
+   (quote
+    ((format-control . thin-space)
+     (no-font . empty-box))))
  '(inhibit-startup-screen t)
  '(recentf-auto-cleanup (quote never))
  '(recentf-max-saved-items 2000)

@@ -62,6 +62,11 @@
 (setq recentf-auto-save-timer (run-with-idle-timer 30 t #'recentf-save-list))
 
 ;; ----------------------------------------------------------------------
+;; To avoid hanging-up when glyphless chars are displayed
+;; ----------------------------------------------------------------------
+(setq inhibit-compacting-font-caches t)
+
+;; ----------------------------------------------------------------------
 ;; autoinsert
 ;; ----------------------------------------------------------------------
 (require 'autoinsert)
