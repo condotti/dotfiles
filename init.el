@@ -107,6 +107,7 @@
 		      (apply f (cons name (cons buffer (cons program args))))))))
   (load-library "leim-list")
   (setq default-input-method 'japanese-anthy
+	anthy-wide-space " "		; to avoid zenkaku space
 	anthy-accept-timeout 1))
 
 (use-package counsel
