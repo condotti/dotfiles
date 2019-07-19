@@ -112,9 +112,12 @@
 
 (use-package counsel
   :bind (("C-x C-r" . counsel-recentf)
-	 ("C-x b" . counsel-switch-buffer))
+	 ("C-x b" . counsel-switch-buffer)
+	 :map minibuffer-local-map ("C-r" . counsel-minibuffer-history))
   :init
-  (counsel-mode 1))
+  (counsel-mode 1)
+  (add-hook 'shell-mode-hook
+	    #'(lambda nil (define-key shell-mode-map (kbd "C-r") 'counsel-shell-history))))
 
 (use-package company
   :bind (:map company-active-map
