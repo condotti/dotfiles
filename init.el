@@ -166,6 +166,12 @@
   :custom (eshell-toggle-size-fraction 3)
   :bind ("C-c s" . eshell-toggle))
 
+(use-package hideshow
+  :straight nil
+  :config
+  (dolist (hook '(emacs-lisp-mode-hook lisp-mode-hook))
+    (add-hook hook #'(lambda nil (hs-minor-mode 1)))))
+
 (use-package lispy
   :init
   (dolist (hook '(lisp-mode-hook
@@ -224,6 +230,9 @@
 (use-package recentf-ext)
 
 (use-package smex)
+
+(use-package swiper
+  :bind ("M-s M-s" . swiper-thing-at-point))
 
 ;; ----------------------------------------------------------------------
 ;; End of init.el
