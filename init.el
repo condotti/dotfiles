@@ -87,6 +87,10 @@
 ;; ----------------------------------------------------------------------
 ;; Packages
 ;; ----------------------------------------------------------------------
+(use-package ace-window
+  :bind ("C-x o" . ace-window)
+  :config (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?\;)))
+
 (use-package all-the-icons)
 
 (use-package anthy
@@ -127,8 +131,20 @@
   (setq company-idle-delay 0
         company-minimum-prefix-length 2
         company-selection-wrap-around t
-        company-dabbrev-downcase nil)
-  (global-company-mode 1))
+        company-dabbrev-downcase nil
+	company-require-match nil
+	company-tooltip-align-annotations t
+	company-eclim-auto-save nil)
+  (global-company-mode 1)
+  :config
+  (advice-add #'company-complete-selection :around
+	      #'(lambda (fn) (let ((company-dabbrev-downcase t))
+			   (call-interactively fn)))))
+
+(use-package company-fuzzy
+  :straight (:type git :host github :repo "elpa-host/company-fuzzy") ; not in elapa stable
+  :config
+  (global-company-fuzzy-mode 1))
 
 (use-package ddskk
   :bind ("C-x C-j" . skk-mode))
@@ -164,10 +180,14 @@
 (use-package eshell-toggle
   :straight (:type git :host github :repo "4DA/eshell-toggle")
   :custom (eshell-toggle-size-fraction 3)
-  :bind ("C-c s" . eshell-toggle))
+  :bind ("C-c e" . eshell-toggle))
 
 (use-package hideshow
   :straight nil
+  :bind (:map hs-minor-mode-map
+	      ("C-c h" . hs-hide-all)
+	      ("C-c s" . hs-show-all)
+	      ("C-c t" . hs-toggle-hiding))
   :config
   (dolist (hook '(emacs-lisp-mode-hook lisp-mode-hook))
     (add-hook hook #'(lambda nil (hs-minor-mode 1)))))
@@ -212,7 +232,7 @@
   :straight (:type git :host github :repo "condotti/my-util-el"))
 
 (use-package neotree
-  :bind ("C-c t" . neotree-toggle)
+  :bind ("C-c n" . neotree-toggle)
   :custom
   (neo-theme (if (display-graphic-p) 'classic 'arrow))
   (neo-show-hidden-files t))
