@@ -24,7 +24,9 @@
  '(recentf-mode t)
  '(safe-local-variable-values
    (quote
-    ((eval add-hook
+    ((auto-fill-mode . t)
+     (buffer-file-coding-system . utf-8)
+     (eval add-hook
 	   (quote before-save-hook)
 	   (function
 	    (lambda nil

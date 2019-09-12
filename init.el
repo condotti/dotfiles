@@ -75,14 +75,12 @@
 	     '((".*/content/\\(post\\|fixed\\).*\\.md$" . "Hugo blog frontmatter")
 	       nil
 	       "---\n"
-	       "date: " (format-time-string "%F") "\n"
-	       "title: " _ "\n"
-	       "tags: []\n"
-	       "---\n\n"
-	       "<!-- Local Variables: -->\n"
-	       "<!-- truncate-lines: t -->\n"
-	       "<!-- eval: (add-hook 'before-save-hook #'(lambda nil (save-excursion (goto-char (point-min)) (while (re-search-forward \"max-width: *[0-9]+px\" nil t) (replace-match \"max-width: 300px\" nil nil)))) nil t) -->\n"
-	       "<!-- End: -->\n"))
+	       "date: " (format-time-string "%F") "\ntitle: " _ "\ntags: []\n---\n\n<!-- Local Variables: -->\n<!-- truncate-lines: t -->\n<!-- eval: (add-hook 'before-save-hook #'(lambda nil (save-excursion (goto-char (point-min)) (while (re-search-forward \"max-width: *[0-9]+px\" nil t) (replace-match \"max-width: 300px\" nil nil)))) nil t) -->\n<!-- End: -->\n"))
+(add-to-list 'auto-insert-alist
+	     '(("memo/.*\\.md$" . "Scribbles frontmatter and local variables")
+	       nil
+	       "---\ntitle: " _ "\ndate: \nauthor: \n---\n\n"
+	       "<!-- Local Variables: -->\n<!-- markdown-command: \"pandoc -s -t html5 --template=scribble\" -->\n<!-- End: -->\n"))
 
 ;; ----------------------------------------------------------------------
 ;; Packages
@@ -215,7 +213,7 @@
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
   :mode (("^README\\.md$" . gfm-mode)
-	 ("\\.md$" . markdown-mode)
+	 ("\\.md$" . gfm-mode)
 	 ("\\.markdown$" . markdown-mode)
 	 ("\\.gfm$" . gfm-mode))
   :init
@@ -226,7 +224,11 @@
 			   (t "markdown"))
 	markdown-split-window-direction 'right)
   :config
-  (set-face-attribute 'markdown-table-face nil :inherit 'default))
+  (set-face-attribute 'markdown-table-face nil :inherit 'default)
+  :bind (:map markdown-mode-map
+	      ("C-c p" . my/markdown-export-to-pdf)
+	      :map gfm-mode-map
+	      ("C-c p" . my/markdown-export-to-pdf)))
 
 (use-package my
   :straight (:type git :host github :repo "condotti/my-util-el"))
