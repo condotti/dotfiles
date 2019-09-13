@@ -76,11 +76,12 @@
 	       nil
 	       "---\n"
 	       "date: " (format-time-string "%F") "\ntitle: " _ "\ntags: []\n---\n\n<!-- Local Variables: -->\n<!-- truncate-lines: t -->\n<!-- eval: (add-hook 'before-save-hook #'(lambda nil (save-excursion (goto-char (point-min)) (while (re-search-forward \"max-width: *[0-9]+px\" nil t) (replace-match \"max-width: 300px\" nil nil)))) nil t) -->\n<!-- End: -->\n"))
+
 (add-to-list 'auto-insert-alist
-	     '(("memo/.*\\.md$" . "Scribbles frontmatter and local variables")
+	     '(("memo/.*\\.md$" . "Scribbled memo")
 	       nil
-	       "---\ntitle: " _ "\ndate: \nauthor: \n---\n\n"
-	       "<!-- Local Variables: -->\n<!-- markdown-command: \"pandoc -s -t html5 --template=scribble\" -->\n<!-- End: -->\n"))
+	       "---\ntitle: " _ "\ndate: " (format-time-string "%F")
+	       "\nauthor: \n---\n"))
 
 ;; ----------------------------------------------------------------------
 ;; Packages

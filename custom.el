@@ -22,27 +22,6 @@
  '(recentf-auto-cleanup (quote never))
  '(recentf-max-saved-items 2000)
  '(recentf-mode t)
- '(safe-local-variable-values
-   (quote
-    ((auto-fill-mode . t)
-     (buffer-file-coding-system . utf-8)
-     (eval add-hook
-	   (quote before-save-hook)
-	   (function
-	    (lambda nil
-	      (save-excursion
-		(goto-char
-		 (point-min))
-		(while
-		    (re-search-forward "max-width: *[0-9]+px" nil t)
-		  (replace-match "max-width: 300px" nil nil)))))
-	   nil t)
-     (org-html-postamble-format
-      ("en" "<div style='text-align:right'>以上</div>"))
-     (org-html-postamble . t)
-     (org-html-preamble-format
-      ("en" "<h1 class='mytitle'>%t (%d)</h1>"))
-     (org-html-preamble . t))))
  '(save-place-mode t)
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
