@@ -181,6 +181,8 @@
   :custom (eshell-toggle-size-fraction 3)
   :bind ("C-c e" . eshell-toggle))
 
+(use-package go-mode)
+
 (use-package hideshow
   :straight nil
   :bind (:map hs-minor-mode-map
