@@ -183,6 +183,13 @@
 
 (use-package go-mode)
 
+(use-package go-playground)
+
+(use-package golint
+  :straight (:type git :host github :repo "golang/lint" :files ("misc/emacs/golint.el")))
+
+(use-package gotest)
+
 (use-package hideshow
   :straight nil
   :bind (:map hs-minor-mode-map
