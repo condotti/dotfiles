@@ -145,6 +145,8 @@
   :config
   (global-company-fuzzy-mode 1))
 
+(use-package company-go)
+
 (use-package ddskk
   :bind ("C-x C-j" . skk-mode))
 
@@ -181,7 +183,11 @@
   :custom (eshell-toggle-size-fraction 3)
   :bind ("C-c e" . eshell-toggle))
 
-(use-package go-mode)
+(use-package go-eldoc)
+
+(use-package go-mode
+  :init
+  (add-hook 'go-mode-hook 'go-eldoc-setup))
 
 (use-package go-playground)
 
