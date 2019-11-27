@@ -187,7 +187,8 @@
 
 (use-package go-mode
   :init
-  (add-hook 'go-mode-hook 'go-eldoc-setup))
+  (add-hook 'go-mode-hook 'go-eldoc-setup)
+  (add-hook 'before-save-hook 'gofmt-before-save))
 
 (use-package go-playground)
 
