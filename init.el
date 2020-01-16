@@ -207,6 +207,15 @@
   (dolist (hook '(emacs-lisp-mode-hook lisp-mode-hook))
     (add-hook hook #'(lambda nil (hs-minor-mode 1)))))
 
+(use-package ivy-posframe
+  :after ivy
+  :custom-face
+  (ivy-posframe ((t (:background "#282a36"))))
+  :custom
+  (ivy-display-function #'ivy-posframe-display-at-frame-center)
+  :config
+  (ivy-posframe-enable))
+
 (use-package lispy
   :init
   (dolist (hook '(lisp-mode-hook
