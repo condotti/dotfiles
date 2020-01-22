@@ -185,6 +185,8 @@
 
 (use-package go-eldoc)
 
+(use-package go-errcheck)
+
 (use-package go-mode
   :init
   (add-hook 'go-mode-hook 'go-eldoc-setup)
@@ -214,7 +216,7 @@
   :custom
   (ivy-display-function #'ivy-posframe-display-at-frame-center)
   :config
-  (ivy-posframe-enable))
+  (ivy-posframe-mode 1))
 
 (use-package lispy
   :init
