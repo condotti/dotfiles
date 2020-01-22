@@ -197,7 +197,13 @@
 (use-package golint
   :straight (:type git :host github :repo "golang/lint" :files ("misc/emacs/golint.el")))
 
-(use-package gotest)
+(use-package gotest
+  :bind (:map go-mode-map
+	      ("C-c f" . go-test-current-file)
+	      ("C-c t" . go-test-current-test)
+	      ("C-c p" . go-test-cuurent-project)
+	      ("C-c b" . go-test-current-benchmark)
+	      ("C-c x" . go-run)))
 
 (use-package hideshow
   :straight nil
