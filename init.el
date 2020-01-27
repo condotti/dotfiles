@@ -183,6 +183,8 @@
   :custom (eshell-toggle-size-fraction 3)
   :bind ("C-c e" . eshell-toggle))
 
+(use-package go-dlv)
+
 (use-package go-eldoc)
 
 (use-package go-errcheck)
