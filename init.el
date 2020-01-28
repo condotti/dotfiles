@@ -307,5 +307,13 @@
   :bind ("M-s M-s" . swiper-thing-at-point))
 
 ;; ----------------------------------------------------------------------
+;; System specific variables
+;; ----------------------------------------------------------------------
+(when (and (eq system-type 'windows-nt)
+	   (eq window-system 'w32))
+  (setq browse-url-chrome-program "C:/Users/la0172/PortableApps/GoogleChromePortable64/GoogleChromePortable.exe"
+	browse-url-firefox-program "C:/Users/la0172/PortableApps/FirefoxPortable/FirefoxPortable.exe"
+	browse-url-firefox-arguments '("-new-tab")))
+;; ----------------------------------------------------------------------
 ;; End of init.el
 ;; ----------------------------------------------------------------------
