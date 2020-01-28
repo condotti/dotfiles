@@ -200,6 +200,20 @@
   :straight (:type git :host github :repo "golang/lint" :files ("misc/emacs/golint.el")))
 
 (use-package gotest
+  :config
+  (when (eq system-type 'windows-nt)
+    (advice-add #'go-test-current-file :around
+		#'(lambda (f &rest args)
+		    (interactive)
+		    (let ((data (go-test--get-current-file-testing-data)))
+		      (if (go-test--is-gb-project)
+			  (go-test--gb-start (s-concat "-test.v=true -test.run=\"" data "\""))
+			(go-test--go-test (s-concat "-run=\"" data "\" ."))))))
+    (advice-add #'go-test-current-file-benchmarks :around
+		#'(lambda (f &rest args)
+		      (interactive)
+		      (let ((benchmarks (go-test--get-current-file-benchmarks)))
+			(go-test--go-test (s-concat "-run ^NOTHING -bench \"" benchmarks "\""))))))
   :bind (:map go-mode-map
 	      ("C-c f" . go-test-current-file)
 	      ("C-c t" . go-test-current-test)
