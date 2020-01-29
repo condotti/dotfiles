@@ -231,6 +231,8 @@
   (dolist (hook '(emacs-lisp-mode-hook lisp-mode-hook))
     (add-hook hook #'(lambda nil (hs-minor-mode 1)))))
 
+(use-package hyperbole)
+
 (use-package ivy-posframe
   :after ivy
   :custom-face
