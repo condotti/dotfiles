@@ -147,6 +147,10 @@
 
 (use-package company-go)
 
+(use-package ctrlf
+  :straight (:type git :host github :repo "raxod502/ctrlf")
+  :config (ctrlf-mode 1))
+
 (use-package ddskk
   :bind ("C-x C-j" . skk-mode))
 
