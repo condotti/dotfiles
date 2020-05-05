@@ -75,7 +75,7 @@
 	     '((".*/content/\\(post\\|fixed\\).*\\.md$" . "Hugo blog frontmatter")
 	       nil
 	       "---\n"
-	       "date: " (format-time-string "%F") "\ntitle: " _ "\ntags: []\n---\n\n<!-- Local Variables: -->\n<!-- truncate-lines: t -->\n<!-- eval: (add-hook 'before-save-hook #'(lambda nil (save-excursion (goto-char (point-min)) (while (re-search-forward \"max-width: *[0-9]+px\" nil t) (replace-match \"max-width: 300px\" nil nil)))) nil t) -->\n<!-- End: -->\n"))
+	       "date: " (format-time-string "%F %T %z") "\ntitle: " _ "\ntags: []\n---\n\n<!-- Local Variables: -->\n<!-- truncate-lines: t -->\n<!-- eval: (add-hook 'before-save-hook #'(lambda nil (save-excursion (goto-char (point-min)) (while (re-search-forward \"max-width: *[0-9]+px\" nil t) (replace-match \"max-width: 300px\" nil nil)))) nil t) -->\n<!-- End: -->\n"))
 
 (add-to-list 'auto-insert-alist
 	     '(("memo/.*\\.md$" . "Scribbled memo")
