@@ -102,6 +102,18 @@
   :config
   (define-obsolete-variable-alias 'last-command-char 'last-command-event "at least 19.34")
   (define-obsolete-function-alias 'string-to-int 'string-to-number "at least 26.1")
+  ;; from https://gordiustears.net/process-kill-without-query-obsolete/
+  (make-obsolete
+   'process-kill-without-query
+   "use `process-query-on-exit-flag' or `set-process-query-on-exit-flag'."
+   "22.1")
+  (defun process-kill-without-query (process &optional flag)
+    "Say no query needed if PROCESS is running when Emacs is exited.
+Optional second argument if non-nil says to require a query.
+Value is t if a query was formerly required."
+    (let ((old (process-query-on-exit-flag process)))
+      (set-process-query-on-exit-flag process nil)
+      old))
   :init
   (when (eq system-type 'windows-nt)
     (advice-add 'anthy-do-invoke-agent :around
@@ -112,7 +124,8 @@
 		#'(lambda (f name buffer program &rest args)
 		    (if (boundp 'my/anthy-context)
 			(apply f (cons name (cons buffer (cons "wsl" (cons program args)))))
-		      (apply f (cons name (cons buffer (cons program args))))))))
+		      (apply f (cons name (cons buffer (cons program args)))))))
+    (add-to-list 'process-coding-system-alist '("[wW][sS][lL]" . (euc-japan . euc-japan))))
   (load-library "leim-list")
   (setq default-input-method 'japanese-anthy
 	anthy-wide-space " "		; to avoid zenkaku space
