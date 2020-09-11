@@ -123,9 +123,10 @@ Value is t if a query was formerly required."
     (advice-add 'start-process :around
 		#'(lambda (f name buffer program &rest args)
 		    (if (boundp 'my/anthy-context)
-			(apply f (cons name (cons buffer (cons "wsl" (cons program args)))))
-		      (apply f (cons name (cons buffer (cons program args)))))))
-    (add-to-list 'process-coding-system-alist '("[wW][sS][lL]" . (euc-japan . euc-japan))))
+			(let ((proc (apply f name buffer "wsl" program args)))
+			  (set-process-coding-system proc 'euc-japan 'euc-japan)
+			  proc)
+		      (apply f name buffer program args)))))
   (load-library "leim-list")
   (setq default-input-method 'japanese-anthy
 	anthy-wide-space " "		; to avoid zenkaku space
