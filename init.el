@@ -98,6 +98,7 @@
 (use-package all-the-icons)
 
 (use-package anthy
+  :disabled t
   :straight (:type git :host github :repo "condotti/anthy-el")
   :config
   (define-obsolete-variable-alias 'last-command-char 'last-command-event "at least 19.34")
@@ -305,6 +306,39 @@ Value is t if a query was formerly required."
 	      ("C-c p" . my/markdown-export-to-pdf)
 	      :map gfm-mode-map
 	      ("C-c p" . my/markdown-export-to-pdf)))
+
+(use-package mozc
+  ;; :straight (:type git :host github :repo "google/mozc")
+  :config
+  (when (eq system-type 'windows-nt)
+    (setq mozc-helper-program-name "mozc_emacs_helper.exe"
+	  mozc-helper-process-timeout-sec 10))
+  :init
+  (when (eq system-type 'windows-nt)
+    (advice-add #'mozc-session-execute-command :after
+		#'(lambda (&rest args)
+		    (when (eq (nth 0 args) 'CreateSession)
+		      (mozc-session-sendkey '(Hankaku/Zenkaku)))))))
+
+(use-package mozc-cursor-color
+  :disabled t
+  :straight (:type git :host github :repo "iRi-E/mozc-el-extensions")
+  :config
+  (setq mozc-cursor-color-alist '((direct        . "red")
+                                  (read-only     . "yellow")
+                                  (hiragana      . "green")
+                                  (full-katakana . "goldenrod")
+                                  (half-ascii    . "dark orchid")
+                                  (full-ascii    . "orchid")
+                                  (half-katakana . "dark goldenrod"))))
+
+(use-package mozc-im
+  ;; :straight (:tipe git :host github :repo "d5884/mozc-im")
+  :init (setq default-input-method "japanese-mozc-im"))
+
+(use-package mozc-popup
+  ;; :straight (:type git :host github :repo "d5884/mozc-popup")
+  :config (setq mozc-candidate-style 'popup))
 
 (use-package my
   :straight (:type git :host github :repo "condotti/my-util-el"))
