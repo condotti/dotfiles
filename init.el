@@ -311,14 +311,21 @@ Value is t if a query was formerly required."
   ;; :straight (:type git :host github :repo "google/mozc")
   :config
   (when (eq system-type 'windows-nt)
-    (setq mozc-helper-program-name "mozc_emacs_helper.exe"
+    (setq mozc-helper-program-name "d:/MyFile/emacs/bin/mozc_emacs_helper.exe"
 	  mozc-helper-process-timeout-sec 10))
   :init
   (when (eq system-type 'windows-nt)
     (advice-add #'mozc-session-execute-command :after
 		#'(lambda (&rest args)
 		    (when (eq (nth 0 args) 'CreateSession)
-		      (mozc-session-sendkey '(Hankaku/Zenkaku)))))))
+		      ;; (mozc-session-sendkey '(Hankaku/Zenkaku))
+		      (mozc-session-sendkey '(hiragana)))))))
+
+(use-package mozc-cand-posframe
+  :disabled t
+  :straight (:type git :host github :repo "akirak/mozc-posframe")
+  :after mozc
+  :config (setq mozc-candidate-style 'posframe))
 
 (use-package mozc-cursor-color
   :disabled t
@@ -338,6 +345,7 @@ Value is t if a query was formerly required."
 
 (use-package mozc-popup
   ;; :straight (:type git :host github :repo "d5884/mozc-popup")
+  ;; :disabled t
   :config (setq mozc-candidate-style 'popup))
 
 (use-package my
