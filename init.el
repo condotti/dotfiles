@@ -311,7 +311,7 @@ Value is t if a query was formerly required."
   ;; :straight (:type git :host github :repo "google/mozc")
   :config
   (when (eq system-type 'windows-nt)
-    (setq mozc-helper-program-name "d:/MyFile/emacs/bin/mozc_emacs_helper.exe"
+    (setq mozc-helper-program-name (format "c:/Users/%s/PortableApps/emacs/bin/mozc_emacs_helper.exe" user-login-name)
 	  mozc-helper-process-timeout-sec 10))
   :init
   (when (eq system-type 'windows-nt)
