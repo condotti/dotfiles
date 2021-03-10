@@ -190,7 +190,7 @@ Value is t if a query was formerly required."
           doc-view-pdftotext-program
           "c:/ProgramData/chocolatey/bin/pdftotext.exe"
           doc-view-odf->pdf-converter-program
-          "d:/USER/Program/PortableApps/PortableApps/LibreOfficePortable/LibreOfficePortable.exe"))
+	  (format "d:/USER/Program/PortableApps/PortableApps/LibreOfficePortable/LibreOfficePortable.exe" user-login-name)))
   (when (eq system-type 'gnu/linux)
     (setq dired-guess-shell-alist-user
           '(("\\.pdf\\'" "evince"))))
@@ -379,9 +379,10 @@ Value is t if a query was formerly required."
 ;; ----------------------------------------------------------------------
 (when (and (eq system-type 'windows-nt)
 	   (eq window-system 'w32))
-  (setq browse-url-chrome-program "C:/Users/la0172/PortableApps/GoogleChromePortable64/GoogleChromePortable.exe"
-	browse-url-firefox-program "C:/Users/la0172/PortableApps/FirefoxPortable/FirefoxPortable.exe"
-	browse-url-firefox-arguments '("-new-tab")))
+  (setq browse-url-chrome-program (format "C:/Users/%s/PortableApps/GoogleChromePortable64/GoogleChromePortable.exe" user-login-name)
+	browse-url-firefox-program (format "C:/Users/%s/PortableApps/FirefoxPortable/FirefoxPortable.exe" user-login-name)
+	browse-url-firefox-arguments '("-new-tab")
+	browse-url-browser-function 'browse-url-chrome))
 ;; ----------------------------------------------------------------------
 ;; End of init.el
 ;; ----------------------------------------------------------------------
