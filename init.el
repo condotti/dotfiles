@@ -53,7 +53,8 @@
 (setq use-dialog-box nil)
 (when window-system
   ;; (add-to-list 'default-frame-alist '(font . "MeiryoKe_Console 12"))
-  (set-face-attribute 'default nil :family "MeiryoKe_Console" :height 120)
+  ;; (set-face-attribute 'default nil :family "MeiryoKe_Console" :height 120)
+  (set-face-attribute 'default nil :family "cica" :height 120)
   (setq use-default-font-for-symbols nil)
   (add-to-list 'default-frame-alist '(width . 100)))
 (advice-add #'display-line-numbers-mode :around
