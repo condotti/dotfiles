@@ -297,7 +297,7 @@ Value is t if a query was formerly required."
   :init
   (setq markdown-command-needs-filename t
 	markdown-command (cl-case system-type
-			   ('windows-nt "pandoc.exe")
+			   ('windows-nt (format "C:/Users/%s/PortableApps/Pandoc/pandoc.exe" user-login-name))
 			   ('gnu/linux " pandoc")
 			   (t "markdown"))
 	markdown-split-window-direction 'right)
