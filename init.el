@@ -61,6 +61,7 @@
 	    #'(lambda (f &rest args) (when (buffer-file-name) (apply f args))))
 (prefer-coding-system 'utf-8)
 (setq recentf-auto-save-timer (run-with-idle-timer 30 t #'recentf-save-list))
+(set-language-environment "Japanese")
 
 ;; ----------------------------------------------------------------------
 ;; To avoid hanging-up when glyphless chars are displayed
@@ -369,6 +370,10 @@ Value is t if a query was formerly required."
   :init (powerline-default-theme))
 
 (use-package recentf-ext)
+
+(use-package ripgrep
+  :init (when (eq system-type 'windows-nt)
+	  (setq ripgrep-executable (format "c:/Users/%s/PortableApps/ripgrep/rg.exe" user-login-name))))
 
 (use-package smex)
 
