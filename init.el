@@ -56,6 +56,7 @@
   (set-face-attribute 'default nil :family "MeiryoKe_Console" :height 120)
   ;; (set-face-attribute 'default nil :family "cica" :height 120)
   ;; (set-face-attribute 'default nil :family "Iosevka Term" :height 120)
+  (setq line-spacing 0.15)
   (setq use-default-font-for-symbols nil)
   (add-to-list 'default-frame-alist '(width . 100)))
 (advice-add #'display-line-numbers-mode :around
@@ -317,7 +318,7 @@ Value is t if a query was formerly required."
     (setq mozc-helper-program-name (format "c:/Users/%s/PortableApps/emacs/bin/mozc_emacs_helper.exe" user-login-name)
 	  mozc-helper-process-timeout-sec 10))
   :init
-  (setq mozc-candidate-style 'overlay)
+  ;; (setq mozc-candidate-style 'overlay)
   (when (eq system-type 'windows-nt)
     (advice-add #'mozc-session-execute-command :after
 		#'(lambda (&rest args)
@@ -349,7 +350,7 @@ Value is t if a query was formerly required."
 
 (use-package mozc-popup
   ;; :straight (:type git :host github :repo "d5884/mozc-popup")
-  :disabled t
+  ;; :disabled t
   :config (setq mozc-candidate-style 'popup))
 
 (use-package my
