@@ -62,8 +62,8 @@
 (advice-add #'display-line-numbers-mode :around
 	    #'(lambda (f &rest args) (when (buffer-file-name) (apply f args))))
 (setq recentf-auto-save-timer (run-with-idle-timer 30 t #'recentf-save-list))
-;; (set-language-environment "Japanese")
-(prefer-coding-system 'utf-8)
+(set-language-environment "Japanese")
+(set-default 'buffer-file-coding-system 'utf-8)
 
 ;; ----------------------------------------------------------------------
 ;; To avoid hanging-up when glyphless chars are displayed
