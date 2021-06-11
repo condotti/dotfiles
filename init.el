@@ -98,7 +98,11 @@
       calendar-day-name-array ["日曜日" "月曜日" "火曜日" "水曜日" "木曜日" "金曜日" "土曜日"]
       calendar-day-abbrev-array ["日" "月" "火" "水" "木" "金" "土"]
       calendar-day-header-array ["日" "月" "火" "水" "木" "金" "土"]
-      calendar-month-name-array ["睦月" "如月" "弥生" "卯月" "皐月" "水無月" "文月" "葉月" "長月" "神無月" "霜月" "師走"])
+      calendar-month-name-array ["睦月" "如月" "弥生" "卯月" "皐月" "水無月" "文月" "葉月" "長月" "神無月" "霜月" "師走"]
+      ;; calendar-month-header '(propertize (format "%d年 %s月" year month) 'font-lock-face 'calendar-month-header)
+      )
+(add-hook 'calendar-today-visible-hook 'calendar-mark-today)
+
 ;; ----------------------------------------------------------------------
 ;; Packages
 ;; ----------------------------------------------------------------------
@@ -144,6 +148,26 @@ Value is t if a query was formerly required."
 	anthy-wide-space " "		; to avoid zenkaku space
 	anthy-accept-timeout 1))
 
+(use-package japanese-holidays
+  :straight (:type git :host github :repo "emacs-jp/japanese-holidays")
+  :config
+  (with-eval-after-load "calendar"
+    (setq calendar-holidays ; 他の国の祝日も表示させたい場合は適当に調整
+          (append japanese-holidays holiday-local-holidays holiday-other-holidays))
+    (setq calendar-mark-holidays-flag t) ; 祝日をカレンダーに表示
+    ;; 土曜日・日曜日を祝日として表示する場合、以下の設定を追加します。
+    ;; デフォルトで設定済み
+    (setq japanese-holiday-weekend '(0 6) ; 土日を祝日として表示
+          japanese-holiday-weekend-marker ; 土曜日を水色で表示
+          '(holiday nil nil nil nil nil japanese-holiday-saturday))
+    (add-hook 'calendar-today-visible-hook 'japanese-holiday-mark-weekend)
+    (add-hook 'calendar-today-invisible-hook 'japanese-holiday-mark-weekend)
+    (set-face-attribute 'japanese-holiday-saturday nil :background nil :inherit 'holiday)
+    (set-face-attribute 'holiday nil :foreground "red" :background nil)
+    (setq calendar-month-header
+	  '(propertize (format "%d年 %s" year (calendar-month-name month)) 'font-lock-face 'calendar-month-header)))
+  )
+
 (use-package counsel
   :bind (("C-x C-r" . counsel-recentf)
 	 ("C-x b" . counsel-switch-buffer)
@@ -172,7 +196,7 @@ Value is t if a query was formerly required."
 			   (call-interactively fn)))))
 
 (use-package company-fuzzy
-  :straight (:type git :host github :repo "elpa-host/company-fuzzy") ; not in elapa stable
+  :straight (:type git :host github :repo "elpa-host/company-fuzzy") ; not in elapa stableo
   :config
   (global-company-fuzzy-mode 1))
 
