@@ -393,6 +393,8 @@ Value is t if a query was formerly required."
   (neo-theme (if (display-graphic-p) 'classic 'arrow))
   (neo-show-hidden-files t))
 
+(use-package olivetti)
+
 (use-package org
   :straight nil
   :config
