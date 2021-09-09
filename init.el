@@ -189,13 +189,14 @@ Value is t if a query was formerly required."
 	company-require-match nil
 	company-tooltip-align-annotations t
 	company-eclim-auto-save nil)
-  (global-company-mode 1)
+  ;; (global-company-mode 1)
   :config
   (advice-add #'company-complete-selection :around
 	      #'(lambda (fn) (let ((company-dabbrev-downcase t))
 			   (call-interactively fn)))))
 
 (use-package company-fuzzy
+  :disabled t
   :straight (:type git :host github :repo "elpa-host/company-fuzzy") ; not in elapa stableo
   :config
   (global-company-fuzzy-mode 1))
