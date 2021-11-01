@@ -295,6 +295,7 @@ Value is t if a query was formerly required."
   :disabled t)
 
 (use-package ivy-posframe
+  :disabled t
   :after ivy
   :custom-face
   (ivy-posframe ((t (:background "#282a36"))))
