@@ -386,6 +386,9 @@ Value is t if a query was formerly required."
   ;; :disabled t
   :config (setq mozc-candidate-style 'popup))
 
+(use-package mozc-temp
+  :bind ("C-." . mozc-temp-convert))
+
 (use-package my
   :straight (:type git :host github :repo "condotti/my-util-el"))
 
