@@ -419,6 +419,8 @@ Value is t if a query was formerly required."
   :init (when (eq system-type 'windows-nt)
 	  (setq ripgrep-executable (format "c:/Users/%s/PortableApps/ripgrep/rg.exe" user-login-name))))
 
+(use-package rust-mode)
+
 (use-package smex)
 
 (use-package swiper
