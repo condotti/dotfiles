@@ -208,7 +208,12 @@ Value is t if a query was formerly required."
   :config (ctrlf-mode 1))
 
 (use-package ddskk
-  :bind ("C-x C-j" . skk-mode))
+  :bind ("C-x C-j" . skk-mode)
+  :init
+  (let* ((skk-jisyo-dir "~/skk-get-jisyo")
+	 (skk-large-jisyo (concat skk-jisyo-dir "/SKK-JISHO.L")))
+    (unless (file-exists-p skk-jisyo-dir) (skk-get (concat skk-jisyo-dir)))
+    (setq skk-large-jisyo skk-large-jisyo-file)))
 
 (use-package ddskk-posframe
   :custom (ddskk-posframe-mode t))
