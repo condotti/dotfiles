@@ -210,9 +210,9 @@ Value is t if a query was formerly required."
 (use-package ddskk
   :bind ("C-x C-j" . skk-mode)
   :init
-  (let* ((skk-jisyo-dir "~/skk-get-jisyo")
-	 (skk-large-jisyo (concat skk-jisyo-dir "/SKK-JISHO.L")))
-    (unless (file-exists-p skk-jisyo-dir) (skk-get (concat skk-jisyo-dir)))
+  (let* ((skk-jisyo-dir "~/.emacs.d/skk-get-jisyo")
+	 (skk-large-jisyo-file (concat skk-jisyo-dir "/SKK-JISYO.L")))
+    (unless (file-exists-p skk-large-jisyo-file) (skk-get skk-jisyo-dir))
     (setq skk-large-jisyo skk-large-jisyo-file)))
 
 (use-package ddskk-posframe
