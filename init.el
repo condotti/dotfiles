@@ -248,7 +248,7 @@ Value is t if a query was formerly required."
   :custom (eshell-toggle-size-fraction 3)
   :bind ("C-c e" . eshell-toggle))
 
-(use-package go-dlv)
+(use-package go-dlv :disabled t)
 
 (use-package go-eldoc)
 
