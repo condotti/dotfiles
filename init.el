@@ -388,7 +388,7 @@ Value is t if a query was formerly required."
 
 (use-package mozc-popup
   ;; :straight (:type git :host github :repo "d5884/mozc-popup")
-  ;; :disabled t
+  :disabled t
   :config (setq mozc-candidate-style 'popup))
 
 (use-package mozc-temp
