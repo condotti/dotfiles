@@ -168,6 +168,8 @@ Value is t if a query was formerly required."
 	  '(propertize (format "%d年 %s" year (calendar-month-name month)) 'font-lock-face 'calendar-month-header)))
   )
 
+(use-package jinja2-mode)
+
 (use-package counsel
   :bind (("C-x C-r" . counsel-recentf)
 	 ("C-x b" . counsel-switch-buffer)
@@ -430,6 +432,8 @@ Value is t if a query was formerly required."
 
 (use-package swiper
   :bind ("M-s M-s" . swiper-thing-at-point))
+
+(use-package yaml-mode)
 
 ;; ----------------------------------------------------------------------
 ;; System specific variables
