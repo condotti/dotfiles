@@ -7,13 +7,15 @@
 ;; ----------------------------------------------------------------------
 
 ;; Speed up startup
-(setq gc-cons-threshold 402653184
-      gc-cons-percentage 0.6)
-(add-hook 'after-init-hook
-          `(lambda ()
-             (setq gc-cons-threshold 800000
-                   gc-cons-percentage 0.1)
-             (garbage-collect)) t)
+;; (setq gc-cons-threshold 402653184
+;;       gc-cons-percentage 0.6)
+;; (add-hook 'after-init-hook
+;;           `(lambda ()
+;;              (setq gc-cons-threshold 800000
+;;                    gc-cons-percentage 0.1)
+;;              (garbage-collect)) t)
+;;
+;; Default gc parameter for Raspberry Pi (2023-05-30)
 
 ;; ----------------------------------------------------------------------
 ;; Customize interface
