@@ -438,7 +438,7 @@ Value is t if a query was formerly required."
 
 (use-package ripgrep
   :init (when (eq system-type 'windows-nt)
-	  (setq ripgrep-executable (format "c:/Users/%s/PortableApps/ripgrep/rg.exe" user-login-name))))
+	  (setq ripgrep-executable (format "c:/Users/%s/AppData/Roaming/PortableApps/ripgrep/rg.exe" user-login-name))))
 
 (use-package rust-mode)
 
