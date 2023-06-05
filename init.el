@@ -441,7 +441,7 @@ Value is t if a query was formerly required."
 
 (use-package emacs
   :bind
-  (("C-x C-f" . consult-recent-file))
+  (("C-x C-r" . consult-recent-file))
   :init
   ;; Add prompt indicator to `completing-read-multiple'.
   ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
