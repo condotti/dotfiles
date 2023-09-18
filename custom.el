@@ -21,6 +21,7 @@
  '(jit-lock-defer-time 1.0)
  '(jit-lock-stealth-load 300)
  '(jit-lock-stealth-time 20)
+ '(mozc-candidate-style 'echo-area)
  '(recentf-auto-cleanup 'never)
  '(recentf-max-saved-items 2000)
  '(recentf-mode t)
