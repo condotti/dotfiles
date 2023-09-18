@@ -68,6 +68,9 @@
 (setq recentf-auto-save-timer (run-with-idle-timer 30 t #'recentf-save-list))
 (set-language-environment "Japanese")
 (set-default 'buffer-file-coding-system 'utf-8)
+(when (eq system-type 'gnu/linux)
+  (global-set-key [zenkaku-hankaku] 'toggle-input-method)
+)
 
 ;; ----------------------------------------------------------------------
 ;; To avoid hanging-up when glyphless chars are displayed
@@ -112,7 +115,7 @@
       calendar-day-name-array ["日曜日" "月曜日" "火曜日" "水曜日" "木曜日" "金曜日" "土曜日"]
       calendar-day-abbrev-array ["日" "月" "火" "水" "木" "金" "土"]
       calendar-day-header-array ["日" "月" "火" "水" "木" "金" "土"]
-      calendar-month-name-array ["睦月" "如月" "弥生" "卯月" "皐月" "水無月" "文月" "葉月" "長月" "神無月" "霜月" "師走"]
+      ;; calendar-month-name-array ["睦月" "如月" "弥生" "卯月" "皐月" "水無月" "文月" "葉月" "長月" "神無月" "霜月" "師走"]
       ;; calendar-month-header '(propertize (format "%d年 %s月" year month) 'font-lock-face 'calendar-month-header)
       )
 (add-hook 'calendar-today-visible-hook 'calendar-mark-today)
