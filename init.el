@@ -579,9 +579,9 @@ Value is t if a query was formerly required."
 (use-package mozc
   ;; :straight (:type git :host github :repo "google/mozc")
   :config
-  ;; (when (eq system-type 'windows-nt)
-  ;;   (setq mozc-helper-program-name (format "c:/Users/%s/PortableApps/emacs/bin/mozc_emacs_helper.exe" user-login-name)
-  ;; 	  mozc-helper-process-timeout-sec 10))
+  (when (eq system-type 'windows-nt)
+    (setq mozc-helper-program-name (format "d:/Users/%s/PortableApps/emacs/bin/mozc_emacs_helper.exe" user-login-name)
+	  mozc-helper-process-timeout-sec 10))
   :init
   ;; (setq mozc-candidate-style 'overlay)
   (when (eq system-type 'windows-nt)
