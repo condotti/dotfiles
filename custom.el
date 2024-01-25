@@ -12,6 +12,14 @@
  '(custom-enabled-themes '(deeper-blue))
  '(display-time-24hr-format t)
  '(display-time-mode t)
+ '(eshell-prompt-function
+   '(lambda nil
+      #("$ " 0 2
+	(rear-nonsticky
+	 (font-lock-face read-only)
+	 front-sticky
+	 (font-lock-face read-only)
+	 font-lock-face eshell-prompt read-only t))))
  '(global-display-line-numbers-mode t)
  '(global-prettify-symbols-mode t)
  '(glyphless-char-display-control '((format-control . thin-space) (no-font . empty-box)))
