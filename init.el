@@ -36,9 +36,12 @@
 (setq use-dialog-box nil)
 (when window-system
   (set-face-attribute 'default nil :family "MeiryoKe_Console" :height 120)
-  (setq line-spacing 0.15)
+  (setq line-spacing 0.5)
   (setq use-default-font-for-symbols nil)
-  (add-to-list 'default-frame-alist '(width . 100)))
+  (add-to-list 'default-frame-alist '(width . 110))
+  (add-to-list 'default-frame-alist '(height . 55))
+  (when (eq system-type 'windows-nt)
+    (set-fontset-font t 'unicode "Segoe UI Emoji" nil 'prepend)))
 (advice-add #'display-line-numbers-mode :around
 	    #'(lambda (f &rest args) (when (buffer-file-name) (apply f args))))
 (setq recentf-auto-save-timer (run-with-idle-timer 30 t #'recentf-save-list))
