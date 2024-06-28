@@ -59,21 +59,23 @@
 ;; autoinsert
 ;; ----------------------------------------------------------------------
 (use-package autoinsert
+  :hook
+  (find-file . auto-insert)
   :config
   (add-to-list 'auto-insert-alist
-	     '((".*/content/\\(post\\|fixed\\).*\\.md$" . "Hugo blog frontmatter")
-	       nil
-	       "---\n"
-	       "date: " (format-time-string "%F %T %z") "\ntitle: " _ "\ntags: []\n---\n\n"))
+	       '((".*/content/\\(post\\|fixed\\).*\\.md$" . "Hugo blog frontmatter")
+		 nil
+		 "---\n"
+		 "date: " (format-time-string "%F %T %z") "\ntitle: " _ "\ntags: []\n---\n\n"))
   (add-to-list 'auto-insert-alist
-	     '((".*/content/post/[0-9]...-[0-9].-[0-9].\\.md$" . "Hugo blog frontmatter")
-	       nil
-	       "---\n"
-	       "date: " (format-time-string "%F %T %z") "\ntitle: " _ "\ntags: []\n---\n"
-	       "### 記録\n"
-	       "| 歩数 | 就寝 | トイレ | 起床 | 記録 | 備考 |\n"
-	       "|------|------|--------|------|------|------|\n\n"
-	       "### 朝\n### 昼\n### 夜\n### 雑記\n"))
+	       '((".*/content/post/[0-9]...-[0-9].-[0-9].\\.md$" . "Hugo blog frontmatter")
+		 nil
+		 "---\n"
+		 "date: " (format-time-string "%F %T %z") "\ntitle: " _ "\ntags: []\n---\n"
+		 "### 記録\n"
+		 "| 歩数 | 就寝 | トイレ | 起床 | 記録 | 備考 |\n"
+		 "|------|------|--------|------|------|------|\n\n"
+		 "### 朝\n### 昼\n### 夜\n### 雑記\n"))
   (add-to-list 'auto-insert-alist
 	       '(("memo/.*\\.md$" . "Scribbled memo")
 		 nil
@@ -180,6 +182,17 @@
 	      ("C-c p" . my/markdown-export-to-pdf)
 	      :map gfm-mode-map
 	      ("C-c p" . my/markdown-export-to-pdf)))
+
+(use-package modus-themes
+  :config
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs t
+        modus-themes-mixed-fonts nil
+        modus-themes-variable-pitch-ui t
+        modus-themes-custom-auto-reload t
+        modus-themes-disable-other-themes t
+        modus-themes-prompts '(italic bold))
+  (load-theme 'modus-vivendi-tinted))
 
 (use-package mozc
   :init
