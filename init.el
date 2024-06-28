@@ -197,12 +197,16 @@
 (use-package mozc
   :init
   (setq default-input-method "japanese-mozc")
+  (setq mozc-candidate-style 'echo-area)
   (when (eq system-type 'windows-nt)
     (advice-add #'mozc-session-execute-command :after
 		#'(lambda (&rest args)
 		    (when (eq (nth 0 args) 'CreateSession)
 		      ;; (mozc-session-sendkey '(Hankaku/Zenkaku))
 		      (mozc-session-sendkey '(hiragana)))))))
+
+(use-package powerline
+  :init (powerline-default-theme))
 
 (use-package ripgrep
   :init (when (eq system-type 'windows-nt)
@@ -217,10 +221,6 @@
   (save-place-mode t))
 
 (use-package yaml-mode)
-
-(use-package telephone-line
-  :init
-  (telephone-line-mode 1))
 
 (use-package treemacs)
 
