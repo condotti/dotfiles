@@ -53,7 +53,6 @@
 ;; ----------------------------------------------------------------------
 ;; To avoid hanging-up when glyphless chars are displayed
 ;; ----------------------------------------------------------------------
-(setq inhibit-compacting-font-caches t)
 
 ;; ----------------------------------------------------------------------
 ;; autoinsert
@@ -129,9 +128,14 @@
   :bind
   (("C-c r" . recentf-open))
   :init
-  (setq enable-recursive-minibuffers t
-	inhibit-splash-screen t
-	inhibit-startup-message t)
+  (setq-default enable-recursive-minibuffers t
+		inhibit-splash-screen t
+		inhibit-startup-message t
+		indent-tabs-mode nil
+		show-trailing-whitespace t
+		inhibit-compacting-font-caches t
+		backup-directory-alist '((".*" . "~/.emacs.d/backup"))
+		auto-save-file-name-transforms '((".*" "~/.emacs.d/backup" t)))
   (tool-bar-mode -1)
   (scroll-bar-mode -1)
   (fido-vertical-mode 1))
