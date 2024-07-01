@@ -44,7 +44,6 @@
     (set-fontset-font t 'unicode "Segoe UI Emoji" nil 'prepend)))
 (advice-add #'display-line-numbers-mode :around
 	    #'(lambda (f &rest args) (when (buffer-file-name) (apply f args))))
-(setq recentf-auto-save-timer (run-with-idle-timer 30 t #'recentf-save-list))
 (set-language-environment "Japanese")
 (set-default 'buffer-file-coding-system 'utf-8)
 (when (eq system-type 'gnu/linux)
@@ -125,8 +124,6 @@
   (edit-server-start))
 
 (use-package emacs
-  :bind
-  (("C-c r" . recentf-open))
   :init
   (setq-default enable-recursive-minibuffers t
 		inhibit-splash-screen t
@@ -211,6 +208,13 @@
 
 (use-package powerline
   :init (powerline-default-theme))
+
+(use-package recentf
+  :ensure t
+  :bind
+  (("C-c r" . recentf-open))
+  :config
+  (setq recentf-auto-save-timer (run-with-idle-timer 30 t #'recentf-save-list)))
 
 (use-package ripgrep
   :init (when (eq system-type 'windows-nt)
