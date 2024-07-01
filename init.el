@@ -179,7 +179,9 @@
 	markdown-split-window-direction 'right)
   :config
   (set-face-attribute 'markdown-table-face nil :inherit 'default)
-  (setq-default markdown-hide-urls t))
+  (setq-default markdown-hide-urls t)
+  (setopt markdown-fontify-code-blocks-natively t
+          markdown-indent-on-enter 'indent-and-new-item))
 
 (use-package modus-themes
   :config
