@@ -179,10 +179,7 @@
 	markdown-split-window-direction 'right)
   :config
   (set-face-attribute 'markdown-table-face nil :inherit 'default)
-  :bind (:map markdown-mode-map
-	      ("C-c p" . my/markdown-export-to-pdf)
-	      :map gfm-mode-map
-	      ("C-c p" . my/markdown-export-to-pdf)))
+  (setq-default markdown-hide-urls t))
 
 (use-package modus-themes
   :config
