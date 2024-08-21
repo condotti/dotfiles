@@ -217,7 +217,7 @@
 
 (use-package python
   :config
-  (setq python-shell-interpreter "ipython"
+  (setq python-shell-interpreter "ipython" ; linux-> ipython3
         python-shell-interpreter-args "-i --simple-prompt --InteractiveShell.display_page=True"))
 
 ;; (use-package pytest
