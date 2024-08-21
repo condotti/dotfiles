@@ -253,7 +253,7 @@
 ;; ----------------------------------------------------------------------
 (defun exercism-run-pytest ()
   (interactive)
-  (eshell-command "py -m pytest -o marker=task *_test.py"))
+  (eshell-command "python -m pytest -o marker=task *_test.py"))
 ;; ----------------------------------------------------------------------
 ;; End of init.el
 ;; ----------------------------------------------------------------------
