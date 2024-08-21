@@ -123,6 +123,11 @@
   :config
   (edit-server-start))
 
+;; (use-package elpy
+;;   :ensure t
+;;   :init
+;;   (elpy-enable))
+
 (use-package emacs
   :init
   (setq-default enable-recursive-minibuffers t
@@ -146,6 +151,8 @@
   :config
   (dolist (hook '(emacs-lisp-mode-hook lisp-mode-hook))
     (add-hook hook #'(lambda nil (hs-minor-mode 1)))))
+
+;; (use-package ein)
 
 (use-package lispy
   :init
@@ -208,6 +215,16 @@
 (use-package powerline
   :init (powerline-default-theme))
 
+(use-package python
+  :config
+  (setq python-shell-interpreter "ipython"
+        python-shell-interpreter-args "-i --simple-prompt --InteractiveShell.display_page=True"))
+
+;; (use-package pytest
+;;   :config
+;;   (defun pytest-cmd-format (&rest _) "pytest")
+;;   (defun pytest-find-test-runner () nil))
+
 (use-package recentf
   :ensure t
   :bind
@@ -231,6 +248,12 @@
 
 (use-package treemacs)
 
+;; ----------------------------------------------------------------------
+;; some util
+;; ----------------------------------------------------------------------
+(defun exercism-run-pytest ()
+  (interactive)
+  (eshell-command "py -m pytest -o marker=task *_test.py"))
 ;; ----------------------------------------------------------------------
 ;; End of init.el
 ;; ----------------------------------------------------------------------
