@@ -142,9 +142,9 @@
   (scroll-bar-mode -1)
   (fido-vertical-mode 1)
   ;; gc
-  (setq gc-cons-percentage 0.2
-        gc-cons-threshold (* 128 1024 1024)
-        garbage-collection-messages t)
+  ;; (setq gc-cons-percentage 0.2
+  ;;       gc-cons-threshold (* 128 1024 1024)
+  ;;       garbage-collection-messages t)
   (add-hook 'focus-out-hook #'garbage-collect))
 
 (use-package hideshow
@@ -220,6 +220,8 @@
 (use-package powerline
   :init (powerline-default-theme))
 
+(use-package projectile)
+
 (use-package python
   :config
   (setq python-shell-interpreter "ipython" ; linux-> ipython3
@@ -229,6 +231,8 @@
 ;;   :config
 ;;   (defun pytest-cmd-format (&rest _) "pytest")
 ;;   (defun pytest-find-test-runner () nil))
+
+(use-package python-pytest)
 
 (use-package recentf
   :ensure t
